@@ -1,8 +1,8 @@
-### pls.regression.R  (2005-04-06)
+### pls.regression.R  (2005-05-10)
 ###
 ###     Multivariate Partial Least Squares Regression
 ###
-### Copyright 2004-04 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2004-05 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### Part of the code was adopted from the pls.pcr package by Ron Wehrens
 ###
@@ -146,7 +146,7 @@ unitr.simpls <- function (Xtrain, Ytrain, Xtest=NULL, ncomp=NULL)
   Tnew <- pls.out$T %*% Mi
   
   Qnew <- pls.out$Q %*% M
-  Pnew <- pls.out$T %*% M
+  Pnew <- pls.out$P %*% M
 
   # B and Ypred are invariant !
 
