@@ -2,7 +2,7 @@
 ###
 ###    Determination of the number of latent components to be used in PLS regression
 ###
-### Copyright 2004-04 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2005-04 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### 
 ###

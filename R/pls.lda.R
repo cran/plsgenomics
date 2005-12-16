@@ -2,7 +2,7 @@
 ###
 ###     Classification with PLS Dimension Reduction and Linear Discriminan Analysis
 ###
-### Copyright 2004-04 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2005-04 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### 
 ###
