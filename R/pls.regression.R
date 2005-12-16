@@ -1,4 +1,4 @@
-### pls.regression.R  (2005-12-16)
+### pls.regression.R  (2005-12-21)
 ###
 ###     Multivariate Partial Least Squares Regression
 ###
@@ -95,7 +95,7 @@ standard.simpls <- function (Xtrain, Ytrain, Xtest=NULL, ncomp=NULL)
             if (!is.null(Xtest))
 	     {
 	     Xtest<-scale(Xtest,scale=FALSE,center=meanX)
-             Ypred[, , i] <- Xtest %*% B[, , i]+meanY
+	     Ypred[, , i] <- Xtest %*% B[, , i]+matrix(meanY,nrow(Xtest),m,byrow=TRUE)
 	     }
         }
     }
