@@ -49,7 +49,16 @@ pls.out<-pls.regression(Xtrain=Xtrain,Ytrain=transformy(Ytrain),Xtest=NULL,ncomp
 Ztrain<-as.data.frame(matrix(pls.out$T,ntrain,ncomp))
 Ztrain$y<-Ytrain
 Ztest<-as.data.frame(scale(Xtest,center=pls.out$meanX,scale=FALSE)%*%pls.out$R)
-lda.out<-lda(formula=y~.,data=Ztrain,priors=priors)
+if (is.null(priors))
+     {
+     lda.out <- lda(formula = y ~ ., data = Ztrain)
+     }
+    else
+     {
+     lda.out <- lda(formula = y ~ ., data = Ztrain, prior = priors)
+     }
+
+
 predclass<-predict(object=lda.out,newdata=Ztest)$class
 
 return(list(predclass=predclass,ncomp=ncomp))

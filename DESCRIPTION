@@ -1,5 +1,5 @@
 Package: plsgenomics
-Version: 1.2
+Version: 1.2-1
 Date: 2006-04-03
 Title: PLS analyses for genomics
 Author: Anne-Laure Boulesteix <boulesteix@stat.uni-muenchen.de>,
@@ -16,4 +16,4 @@ Description: This package provides routines for PLS-based genomic analyses.
   methods for microarray data: GSIM and Ridge PLS.
 License: GPL version 2 or newer
 URL: http://cran.r-project.org/src/contrib/Descriptions/plsgenomics.html
-Packaged: Mon Apr  3 13:42:36 2006; socher
+Packaged: Thu Sep 28 10:10:39 2006; socher
