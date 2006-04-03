@@ -4,6 +4,13 @@
 \alias{transformy}
 \alias{pls.regression.sample}
 \alias{pls.lda.sample}
+\alias{gsim.aux}
+\alias{mgsimaux}
+\alias{rplsaux}
+\alias{mrplsaux}
+\alias{hplugin}
+\alias{wirrls}
+\alias{mwirrls}
 
 \title{Internal plsgenomics Functions}
 \description{

@@ -1,8 +1,8 @@
-### pls.regression.R  (2005-12-21)
+### pls.regression.R  (2005-05-10)
 ###
 ###     Multivariate Partial Least Squares Regression
 ###
-### Copyright 2005-12 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2004-05 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### Part of the code was adopted from the pls.pcr package by Ron Wehrens
 ###
@@ -41,7 +41,6 @@ standard.simpls <- function (Xtrain, Ytrain, Xtest=NULL, ncomp=NULL)
      Ytrain<-matrix(Ytrain,length(Ytrain),1)
      }
     Y<-scale(Ytrain,center=TRUE,scale=FALSE)
-    meanY<-attributes(Y)$"scaled:center"
     n <- dim(X)[1]
     p <- dim(X)[2]
     m <- dim(Y)[2]
@@ -95,13 +94,13 @@ standard.simpls <- function (Xtrain, Ytrain, Xtest=NULL, ncomp=NULL)
             if (!is.null(Xtest))
 	     {
 	     Xtest<-scale(Xtest,scale=FALSE,center=meanX)
-	     Ypred[, , i] <- Xtest %*% B[, , i]+matrix(meanY,nrow(Xtest),m,byrow=TRUE)
+             Ypred[, , i] <- Xtest %*% B[, , i]
 	     }
         }
     }
     if (length(ncomp)==1)
      {
-     B<-matrix(B[, , 1],p,m)
+     B<-B[,,1]
      }
     if (!is.null(Xtest))
         list(B = B, Ypred = Ypred, P = PP, Q = QQ, T = TT, R=RR, meanX=meanX)

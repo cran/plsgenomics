@@ -2,7 +2,7 @@
 ###
 ###     Variable selection using the PLS weights
 ###
-### Copyright 2005-04 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2004-04 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### Part of the code was adopted from the pls.pcr package by Ron Wehrens
 ###

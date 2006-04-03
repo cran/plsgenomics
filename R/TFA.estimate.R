@@ -2,7 +2,7 @@
 ###
 ###     Prediction of Transcription Factor Activities using PLS
 ###
-### Copyright 2005-04 Anne-Laure Boulesteix and Korbinian Strimmer
+### Copyright 2004-04 Anne-Laure Boulesteix and Korbinian Strimmer
 ###
 ### 
 ###
