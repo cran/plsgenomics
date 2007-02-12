@@ -79,12 +79,12 @@ pls.regression(Xtrain, Ytrain, Xtest=NULL, ncomp=NULL,  unit.weights=TRUE)
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.statistik.lmu.de/~socher/}) 
+  Anne-Laure Boulesteix (\url{http://www.slcmsr.net/boulesteix}) 
    and 
-  Korbinian Strimmer (\url{http://www.statistik.lmu.de/~strimmer/}).
+  Korbinian Strimmer (\url{http://strimmerlab.org/}).
 
  Adapted in part from 
-  pls.pcr code by R. Wehrens (\url{http://cran.r-project.org/src/contrib/Descriptions/pls.pcr.html}). 
+  pls.pcr code by R. Wehrens (\url{http://cran.r-project.org/src/contrib/Descriptions/pls.html}). 
 
 
 }

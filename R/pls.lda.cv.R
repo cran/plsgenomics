@@ -36,7 +36,7 @@ if (length(ncomp)==1)
   ncomp<-1:ncomp
  }
 n<-nrow(Xtrain)
-ntrain<-floor(n*2/3)
+ntrain<-floor(n*alpha)
 samp<-matrix(0,ntrain,nruncv)
 for (i in 1:nruncv)
  {

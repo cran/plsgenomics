@@ -28,10 +28,10 @@
 pls.regression.cv<-function(Xtrain,Ytrain,ncomp,nruncv=20,alpha=2/3)
 {
 n<-nrow(Xtrain)
-ntrain<-floor(n*2/3)
+ntrain<-floor(n*alpha)
 if (is.vector(Ytrain))
  {
- Ytrain<-matrix(Ytrain,ntrain,1)
+ Ytrain<-matrix(Ytrain,n,1)
  }
 samp<-matrix(0,ntrain,nruncv)
 

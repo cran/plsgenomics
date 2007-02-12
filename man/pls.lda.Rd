@@ -65,13 +65,15 @@ The function \code{pls.lda}  performs binary or multicategorical classification 
  A. L. Boulesteix (2004). PLS dimension reduction for classification with microarray data,
  Statistical Applications in Genetics and Molecular Biology \bold{3}, Issue 1, Article 33.
 
+ A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
 
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.statistik.lmu.de/~socher/}) 
+  Anne-Laure Boulesteix (\url{http://www.slcmsr.net/boulesteix}) 
   
  
 

@@ -65,15 +65,17 @@ might be used as argument  in place of ChIP data.
 A. L. Boulesteix and K. Strimmer (2005). Predicting Transcription Factor Activities 
 from Combined Analysis of Microarray and ChIP Data: A Partial Least Squares Approach.
  
+ A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
 
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.statistik.lmu.de/~socher/}) 
+  Anne-Laure Boulesteix (\url{http://www.slcmsr.net/boulesteix}) 
    and 
-  Korbinian Strimmer (\url{http://www.statistik.lmu.de/~strimmer/}).
+  Korbinian Strimmer (\url{http://strimmerlab.org}).
 
 
 }

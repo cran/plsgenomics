@@ -51,9 +51,7 @@ mgsim(Ytrain,Xtrain,Lambda,h,Xtest=NULL,NbIterMax=50)
 
 \references{
  
- S. Lambert-Lacroix and Julie Peyre (2005). Local likelyhood regression
- in  generalized linear single-index models with applications to microarray data, 
- TR0563 IAP Statistics network (\url{http://www.stat.ucl.ac.be/IAP/}).
+S. Lambert-Lacroix,  J. Peyre . (2006) Local likelyhood regression in  generalized linear single-index models with applications to microarrays data. Computational Statistics and Data Analysis, vol 51, n 3, 2091-2113. 
 
 }
 
