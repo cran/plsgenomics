@@ -16,7 +16,7 @@ preprocess(Xtrain, Xtest=NULL,Threshold=c(100,16000),Filtering=c(5,500),log10.sc
   If \code{Threshold} is NULL then no thresholding is done. By default, if the value given for \code{Threshold} is not valid,
   no thresholding is done.}
 \item{Filtering}{ a vector of length 2 containing the values (FiltMin,FiltMax) for filtering genes in preprocess.
- Genes with max/min$\leq FiltMin$ and (max-min)$\leq FiltMax$ are excluded.
+ Genes with max/min$<= FiltMin$ and (max-min)$<= FiltMax$ are excluded.
   If \code{Filtering} is NULL then no thresholding is done. By default, if the value given for \code{Filtering} is not valid,
   no filtering is done.}
 \item{log10.scale}{a logical value equal to TRUE if a log10-transformation has to be done.}

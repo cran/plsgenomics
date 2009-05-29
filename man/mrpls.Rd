@@ -9,7 +9,7 @@ mrpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a {1,...,c+1}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{1,...,c+1\}-valued vector and contains the response variable for each
   observation. c+1 is the number of classes.}
   \item{Xtest}{a (ntest x p) matrix containing the predictors for the test data
   set. \code{Xtest} may also be a vector of length p (corresponding to only one 
@@ -54,8 +54,8 @@ mrpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
 
 \references{
  
- G. Fort, S. Lambert-Lacroix and Julie Peyre (2005). Réduction de dimension dans les modèles 
- linéaires généralisés : application à la classification supervisée de données issues des biopuces.
+ G. Fort, S. Lambert-Lacroix and Julie Peyre (2005). Rï¿½duction de dimension dans les modï¿½les 
+ linï¿½aires gï¿½nï¿½ralisï¿½s : application ï¿½ la classification supervisï¿½e de donnï¿½es issues des biopuces.
  Journal de la SFDS, tome 146, n1-2, 117-152. 
 
 }

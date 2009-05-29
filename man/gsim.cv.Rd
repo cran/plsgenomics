@@ -10,7 +10,7 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a {1,2}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
   observation.}
   \item{LambdaRange}{the vector of positive real value from which the best ridge regularization parameter
   has to be chosen by cross-validation.}

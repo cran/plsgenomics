@@ -9,7 +9,7 @@ rpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a {1,2}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
   observation.}
   \item{Xtest}{a (ntest x p) matrix containing the predictors for the test data
   set. \code{Xtest} may also be a vector of length p (corresponding to only one 

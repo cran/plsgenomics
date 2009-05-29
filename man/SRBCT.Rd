@@ -47,10 +47,9 @@ downloaded from
  M. and Antonescu, C. R. and Peterson, C. and Meltzer, P. S. (2001).
  Classification and diagnostic prediction of cancers using gene expression profiling and artificial
  neural networks, Nature Medecine, 7, 673--679.
-
 }
 
-}
+
 
 \examples{
 # load plsgenomics library

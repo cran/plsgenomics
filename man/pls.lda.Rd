@@ -73,7 +73,7 @@ The function \code{pls.lda}  performs binary or multicategorical classification 
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.slcmsr.net/boulesteix}) 
+  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
   
  
 
