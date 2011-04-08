@@ -66,4 +66,4 @@ resP <- preprocess(Xtrain= Xtrain, Xtest=Xtest,Threshold = c(100,16000),Filterin
 # how many genes after preprocess ?
 dim(resP$pXtrain)[2]
 }
-\keyword{}
+

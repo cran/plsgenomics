@@ -85,4 +85,4 @@ res$Cvg
 sum(res$Ytest!=Colon$Y[-IndexLearn])
 
 }
-\keyword{}
+

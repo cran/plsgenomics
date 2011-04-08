@@ -75,4 +75,4 @@ nl <- mrpls.cv(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],LambdaRang
 res <- mrpls(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=nl$Lambda,ncomp=nl$ncomp,Xtest=SRBCT$X[-IndexLearn,])
 sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 }
-\keyword{}
+

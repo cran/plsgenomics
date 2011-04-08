@@ -79,4 +79,4 @@ resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=nl$Lambda,n
 sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
 
 }
-\keyword{}
+

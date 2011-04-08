@@ -78,4 +78,4 @@ res$Cvg
 sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 
 }
-\keyword{}
+

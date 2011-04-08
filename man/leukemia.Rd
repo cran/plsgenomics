@@ -12,9 +12,7 @@ leukemia microarray study of Golub et al. (1999).
   
 }
 
-\details{
-  
-}
+
 
 \value{
 A list with the following elements:
