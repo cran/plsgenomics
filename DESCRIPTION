@@ -1,5 +1,5 @@
 Package: plsgenomics
-Version: 1.3
+Version: 1.3-1
 Date: 2015-05-05
 Title: PLS Analyses for Genomics
 Author: Anne-Laure Boulesteix <boulesteix@ibe.med.uni-muenchen.de>,
@@ -11,18 +11,18 @@ Maintainer: Ghislain Durif <ghislain.durif@univ-lyon1.fr>
 Depends: R (>= 3.0), MASS, boot, parallel
 Suggests:
 Encoding: latin1
-Description: Routines for PLS-based genomic analyses.
-        They implements PLS methods for classification with
+Description: Routines for PLS-based genomic analyses,
+        implementing PLS methods for classification with
         microarray data and prediction of transcription factor
         activities from combined ChIP-chip analysis. The >=1.2-1
         versions include two new classification methods for microarray
-        data: GSIM and Ridge PLS. The >=1.3 versions includes an other
+        data: GSIM and Ridge PLS. The >=1.3 versions includes a
         new classification method combining variable selection and
         compression in logistic regression context: RIRLS-SPLS; and
         an adaptive version of the sparse PLS.
 License: GPL (>= 2)
 URL: http://cran.r-project.org/web/packages/plsgenomics/index.html
-Packaged: 2015-05-07 12:42:30 UTC; durif
+Packaged: 2015-05-11 14:32:36 UTC; durif
 Repository: CRAN
-Date/Publication: 2015-05-07 18:02:04
+Date/Publication: 2015-05-11 17:05:40
 NeedsCompilation: no
