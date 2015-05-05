@@ -32,9 +32,10 @@ downloaded from
 \url{http://microarray.princeton.edu/oncology/affydata/index.html}.}
 
 \references{
-Alon, U. and Barkai, N. and Notterman, D.A. and Gish, K. and Ybarra, S. and Mack, D. and Levine, A.J. (1999).
-Broad patterns of gene expression revealed by clustering analysis of tumor and normal colon tissues probed by oligonucleotide arrays,
-Proc. Natl. Acad. Sci. USA,\bold{96}(12), 6745--6750.
+Alon, U. and Barkai, N. and Notterman, D.A. and Gish, K. and Ybarra, S. and Mack, D. and Levine, 
+A.J. (1999). Broad patterns of gene expression revealed by clustering analysis of tumor and normal 
+colon tissues probed by oligonucleotide arrays, Proc. Natl. Acad. Sci. USA,\bold{96}(12), 
+6745--6750.
 }
 
 

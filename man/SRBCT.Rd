@@ -39,7 +39,7 @@ A list with the following elements:
 
 \source{The data are described in Khan et al. (2001) and can be freely
 downloaded from 
-\url{http://www.thep.lu.se/pub/Preprints/01/lu_tp_01_06_supp.html}.}
+\url{http://research.nhgri.nih.gov/microarray/Supplement/}.}
 
 \references{
  Khan, J. and Wei, J. S. and Ringner, M. and Saal, L. H. and Ladanyi,

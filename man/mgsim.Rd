@@ -46,17 +46,21 @@ mgsim(Ytrain,Xtrain,Lambda,h,Xtest=NULL,NbIterMax=50)
   after projecting predictor variables onto these estimated directions. }
   \item{DeletedCol}{the vector containing the column number of \code{Xtrain} when the 
   variance of the corresponding predictor variable is null. Otherwise \code{DeletedCol}=NULL}
-  \item{Cvg}{the 0-1 value indicating convergence of the algorithm (1 for convergence, 0 otherwise).}
+  \item{Cvg}{the 0-1 value indicating convergence of the algorithm (1 for convergence, 
+  0 otherwise).}
   }
 
 \references{
  
-S. Lambert-Lacroix,  J. Peyre . (2006) Local likelyhood regression in  generalized linear single-index models with applications to microarrays data. Computational Statistics and Data Analysis, vol 51, n 3, 2091-2113. 
+S. Lambert-Lacroix,  J. Peyre . (2006) Local likelyhood regression in  generalized linear 
+single-index models with applications to microarrays data. Computational Statistics and 
+Data Analysis, vol 51, n 3, 2091-2113. 
 
 }
 
 \author{
-  Sophie Lambert-Lacroix (\url{http://www-lmc.imag.fr/lmc-sms/Sophie.Lambert}) 
+  Sophie Lambert-Lacroix 
+  (\url{http://membres-timc.imag.fr/Sophie.Lambert/}) 
    and 
   Julie Peyre (\url{http://www-lmc.imag.fr/lmc-sms/Julie.Peyre/}).
 
@@ -69,10 +73,12 @@ library(plsgenomics)
 
 # load SRBCT data
 data(SRBCT)
-IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
+IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),
+			sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
 
 # perform prediction by MGSIM
-res <- mgsim(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,h=19,Xtest=SRBCT$X[-IndexLearn,])
+res <- mgsim(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,h=19,
+			Xtest=SRBCT$X[-IndexLearn,])
 res$Cvg
 sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 

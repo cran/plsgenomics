@@ -16,11 +16,11 @@ data(Ecoli)
 
 \value{
   A list with the following components:
-  \item{CONNECdata}{a (100 x 16) matrix containing the connectivity data for 100 genes and 16 regulators. The data
-  are coded as 1 (positive interaction), 0 (no interaction) and -1 (negative
+  \item{CONNECdata}{a (100 x 16) matrix containing the connectivity data for 100 genes and 16 
+  regulators. The data are coded as 1 (positive interaction), 0 (no interaction) and -1 (negative
   interaction).}
-  \item{GEdata}{a (100 x 23) matrix containing gene expression data for 100 genes and 23 samples corresponding
-  to differents times during carbon source transition.}
+  \item{GEdata}{a (100 x 23) matrix containing gene expression data for 100 genes and 23 
+  samples corresponding to differents times during carbon source transition.}
   \item{timepoint}{a numeric vector of length 23 containing the time points (in
   hours) for the 23 samples.}
   
@@ -40,7 +40,7 @@ data(Ecoli)
 }
 
 \source{The data are described in Kao et al. (2004) and can be freely downloaded from 
-\url{http://www.seas.ucla.edu/~liaoj/downloads.htm}.}
+\url{http://www.seas.ucla.edu/~liaoj/downloads.html}.}
 
 \examples{
 # load plsgenomics library

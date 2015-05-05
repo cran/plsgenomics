@@ -12,17 +12,18 @@ rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
   \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
   observation.}
-  \item{LambdaRange}{the vector of positive real value from which the best ridge regularization parameter
-  has to be chosen by cross-validation.}
-  \item{ncompMax}{a positive integer. the best number of components is chosen from  1,...,\code{ncompMax}. 
-  If \code{ncompMax}=0,then the Ridge regression is performed without reduction 
-  dimension. }
+  \item{LambdaRange}{the vector of positive real value from which the best ridge regularization 
+  parameter has to be chosen by cross-validation.}
+  \item{ncompMax}{a positive integer. the best number of components is chosen from  
+  1,...,\code{ncompMax}. If \code{ncompMax}=0,then the Ridge regression is performed without 
+  reduction dimension. }
   \item{NbIterMax}{a positive integer. \code{NbIterMax} is the maximal number of iterations in the 
   Newton-Rapson parts.}
 }
 \description{
- The function \code{rpls.cv} determines the best ridge regularization parameter and the best number of PLS
- components to be used for classification for Fort and Lambert-Lacroix (2005) RPLS algorithm.
+ The function \code{rpls.cv} determines the best ridge regularization parameter and the best 
+ number of PLS components to be used for classification for Fort and Lambert-Lacroix (2005) 
+ RPLS algorithm.
 
 }
 
@@ -31,9 +32,9 @@ rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
   number of PLS components to be used for classification with RPLS for binary data 
   (for categorical data see \code{\link{mrpls}} and \code{\link{mrpls.cv}}).
   At each cross-validation run, \code{Xtrain} is split into a pseudo training
-  set (ntrain-1 samples) and a pseudo test set (1 sample) and the classification error rate is determined for each
-  value of ridge regularization parameter and number of components. Finally, the function 
-  \code{mrpls.cv} returns the values of the ridge regularization parameter and 
+  set (ntrain-1 samples) and a pseudo test set (1 sample) and the classification error rate is 
+  determined for each value of ridge regularization parameter and number of components. Finally, 
+  the function \code{mrpls.cv} returns the values of the ridge regularization parameter and 
   bandwidth for which the mean classification error rate is minimal. 
  
 }
@@ -53,7 +54,8 @@ rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
 }
 
 \author{
-  Sophie Lambert-Lacroix (\url{http://www-lmc.imag.fr/lmc-sms/Sophie.Lambert}). 
+  Sophie Lambert-Lacroix 
+  (\url{http://membres-timc.imag.fr/Sophie.Lambert/}). 
 
 }
 \seealso{\code{\link{rpls}}, \code{\link{mrpls}}, \code{\link{mrpls.cv}}.}
@@ -68,14 +70,17 @@ data(Colon)
 IndexLearn <- c(sample(which(Colon$Y==2),12),sample(which(Colon$Y==1),8))
 
 # preprocess data
-res <- preprocess(Xtrain= Colon$X[IndexLearn,], Xtest=Colon$X[-IndexLearn,],Threshold = c(100,16000),Filtering=c(5,500),log10.scale=TRUE,row.stand=TRUE)
+res <- preprocess(Xtrain= Colon$X[IndexLearn,], Xtest=Colon$X[-IndexLearn,],
+                    Threshold = c(100,16000),Filtering=c(5,500),
+                    log10.scale=TRUE,row.stand=TRUE)
 # the results are given in res$pXtrain and res$pXtest
 
 # Determine optimum ncomp and lambda
 nl <- rpls.cv(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,LambdaRange=c(0.1,1),ncompMax=3)
 
 # perform prediction by RPLS
-resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=nl$Lambda,ncomp=nl$ncomp,Xtest=res$pXtest)
+resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=nl$Lambda,
+			ncomp=nl$ncomp,Xtest=res$pXtest)
 sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
 
 }

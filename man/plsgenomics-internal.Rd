@@ -12,6 +12,12 @@
 \alias{wirrls}
 \alias{mwirrls}
 
+\alias{ust}
+\alias{ust.adapt}
+\alias{wpls}
+\alias{spls.adapt.aux}
+\alias{rirls.spls.aux}
+
 \title{Internal plsgenomics Functions}
 \description{
   Internal plsgenomics functions.

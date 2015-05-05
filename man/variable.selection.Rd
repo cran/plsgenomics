@@ -9,7 +9,8 @@ variable.selection(X, Y, nvar=NULL)
   \item{X}{a (n x p) data matrix of predictors. X may be a matrix or a
   data frame. Each row corresponds to an observation and each column corresponds
   to a predictor variable.}
-  \item{Y}{a vector of length n giving the classes of the n observations.  The two classes must be coded as 1,2.}
+  \item{Y}{a vector of length n giving the classes of the n observations.  The two classes 
+  must be coded as 1,2.}
   \item{nvar}{the number of variables to be returned. If \code{nvar=NULL}, all the variables are
    returned.}
 }
@@ -34,8 +35,8 @@ The function \code{variable.selection}  performs variable selection for binary c
 }
 
 \value{
-  A vector of length \code{nvar} (or of length p if \code{nvar=NULL}) containing the indices of the variables to be selected. 
-  The variables are ordered from the best to the worst variable. 
+  A vector of length \code{nvar} (or of length p if \code{nvar=NULL}) containing the indices of 
+  the variables to be selected. The variables are ordered from the best to the worst variable. 
 }
 
 \references{
@@ -43,7 +44,8 @@ The function \code{variable.selection}  performs variable selection for binary c
  A. L. Boulesteix (2004). PLS dimension reduction for classification with microarray data,
  Statistical Applications in Genetics and Molecular Biology \bold{3}, Issue 1, Article 33.
  
-  A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+  A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis 
+  of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
 
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
@@ -51,7 +53,9 @@ The function \code{variable.selection}  performs variable selection for binary c
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
    
  
 

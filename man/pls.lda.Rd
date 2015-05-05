@@ -23,8 +23,8 @@ pls.lda(Xtrain, Ytrain, Xtest=NULL, ncomp, nruncv=0, alpha=2/3, priors=NULL)
   to choose the best number of components from the vector of integers \code{ncomp} or from 
   1,...,\code{ncomp} if \code{ncomp} is of length 1.}
   \item{nruncv}{the number of cross-validation iterations to be performed for the choice of
-  the number of latent components. If \code{nruncv=0}, cross-validation is not performed and \code{ncomp}
-  latent components are used.}
+  the number of latent components. If \code{nruncv=0}, cross-validation is not performed 
+  and \code{ncomp} latent components are used.}
   \item{alpha}{the proportion of observations to be included in the training set at
   each cross-validation iteration.}
   \item{priors}{The class priors to be used for linear discriminant analysis. If
@@ -32,9 +32,9 @@ pls.lda(Xtrain, Ytrain, Xtest=NULL, ncomp, nruncv=0, alpha=2/3, priors=NULL)
    
 }
 \description{
-The function \code{pls.lda}  performs binary or multicategorical classification using the method described
-  in Boulesteix (2004) which consists in PLS dimension reduction and linear
-  discriminant analysis applied on the PLS components. 
+The function \code{pls.lda}  performs binary or multicategorical classification using the method 
+described in Boulesteix (2004) which consists in PLS dimension reduction and linear
+discriminant analysis applied on the PLS components. 
   
 }
 
@@ -65,7 +65,8 @@ The function \code{pls.lda}  performs binary or multicategorical classification 
  A. L. Boulesteix (2004). PLS dimension reduction for classification with microarray data,
  Statistical Applications in Genetics and Molecular Biology \bold{3}, Issue 1, Article 33.
 
- A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+ A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis 
+ of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
 
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
@@ -73,7 +74,9 @@ The function \code{pls.lda}  performs binary or multicategorical classification 
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
   
  
 
@@ -88,11 +91,15 @@ library(plsgenomics)
 # load leukemia data
 data(leukemia)
 
-# Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), with 2 PLS components
-pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:3,],ncomp=2,nruncv=0)
+# Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), 
+# with 2 PLS components
+pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:3,],
+		ncomp=2,nruncv=0)
 
-# Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), with the best number of components as determined by cross-validation
-pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:3,],ncomp=1:4,nruncv=20)
+# Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), 
+# with the best number of components as determined by cross-validation
+pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:3,],
+		ncomp=1:4,nruncv=20)
 
 }
 \keyword{multivariate}

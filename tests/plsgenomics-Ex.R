@@ -4,6 +4,8 @@ options(warn = 1)
 library('plsgenomics')
 
 assign(".oldSearch", search(), pos = 'CheckExEnv')
+
+###############################################################################################
 cleanEx()
 nameEx("Colon")
 ### * Colon
@@ -31,7 +33,7 @@ sum(Colon$Y==1)
 sum(Colon$Y==2)
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("Ecoli")
 ### * Ecoli
@@ -58,7 +60,7 @@ dim(Ecoli$CONNECdata)
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("SRBCT")
 ### * SRBCT
@@ -88,6 +90,8 @@ sum(SRBCT$Y==3)
 sum(SRBCT$Y==4)
 
 
+
+###############################################################################################
 cleanEx()
 nameEx("TFA.estimate")
 ### * TFA.estimate
@@ -115,7 +119,7 @@ TFA.estimate(Ecoli$CONNECdata,Ecoli$GEdata,ncomp=1:5,nruncv=20)
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("gsim")
 ### * gsim
@@ -150,7 +154,7 @@ sum(res$Ytest!=Colon$Y[-IndexLearn])
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("gsim.cv")
 ### * gsim.cv
@@ -188,7 +192,7 @@ sum(res$Ytest!=Colon$Y[-IndexLearn])
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("leukemia")
 ### * leukemia
@@ -216,6 +220,7 @@ sum(leukemia$Y==1)
 sum(leukemia$Y==2)
 
 
+###############################################################################################
 cleanEx()
 nameEx("mgsim")
 ### * mgsim
@@ -252,7 +257,7 @@ SRBCT$Y[83]
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("mgsim.cv")
 ### * mgsim.cv
@@ -272,19 +277,23 @@ library(plsgenomics)
 
 # load SRBCT data
 data(SRBCT)
-IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
+IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),
+                sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
 
-# Determine optimum h and lambda 
-hl <- mgsim.cv(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],LambdaRange=c(0.1),hRange=c(7,20))
+### Determine optimum h and lambda
+# /!\ take 30 secondes to run
+#hl <- mgsim.cv(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],
+#                            LambdaRange=c(0.1),hRange=c(7,20))
 
-# perform prediction by MGSIM
-res <- mgsim(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=hl$Lambda,h=hl$h,Xtest=SRBCT$X[-IndexLearn,])
-res$Cvg
-sum(res$Ytest!=SRBCT$Y[-IndexLearn])
+### perform prediction by MGSIM
+#res <- mgsim(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=hl$Lambda,
+#             h=hl$h,Xtest=SRBCT$X[-IndexLearn,])
+#res$Cvg
+#sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("mrpls")
 ### * mrpls
@@ -318,7 +327,7 @@ SRBCT$Y[83]
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("mrpls.cv")
 ### * mrpls.cv
@@ -350,6 +359,7 @@ sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 
 
 
+###############################################################################################
 cleanEx()
 nameEx("pls.lda")
 ### * pls.lda
@@ -378,7 +388,7 @@ pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("pls.lda.cv")
 ### * pls.lda.cv
@@ -408,7 +418,7 @@ pls.lda.cv(Xtrain=leukemia$X,Ytrain=leukemia$Y,ncomp=3,nruncv=20)
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("pls.regression")
 ### * pls.regression
@@ -438,7 +448,7 @@ pls.regression(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,Xtest=Ecoli$CONNECdat
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("pls.regression.cv")
 ### * pls.regression.cv
@@ -467,7 +477,7 @@ pls.regression.cv(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,ncomp=c(2,3),nrunc
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("preprocess")
 ### * preprocess
@@ -499,6 +509,8 @@ dim(resP$pXtrain)[2]
 
 
 
+
+###############################################################################################
 cleanEx()
 nameEx("rpls")
 ### * rpls
@@ -538,7 +550,7 @@ Ypred
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("rpls.cv")
 ### * rpls.cv
@@ -574,7 +586,7 @@ sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
 
 
 
-
+###############################################################################################
 cleanEx()
 nameEx("variable.selection")
 ### * variable.selection
@@ -608,6 +620,105 @@ variable.selection(leukemia$X,leukemia$Y,nvar=50)
 
 
 
+
+###############################################################################################
+cleanEx()
+nameEx("rirls.spls")
+### * rirls.spls
+
+flush(stderr()); flush(stdout())
+
+### Name: rirls.spls
+### Title: Classification by Ridge Iteratively Reweighted Least Squares 
+###        followed by Adaptive Sparse PLS regression for binary response
+### Aliases: rirls.spls
+### Keywords: multivariate
+
+### ** Examples
+
+### load plsgenomics library
+library(plsgenomics)
+
+### generating data
+n <- 50
+p <- 100
+sample1 <- sample.bin(n=n, p=p, kstar=20, lstar=2, beta.min=0.25, beta.max=0.75, 
+                      mean.H=0.2, sigma.H=10, sigma.F=5)
+
+X <- sample1$X
+Y <- sample1$Y
+
+### splitting between learning and testing set
+index.train <- sort(sample(1:n, size=round(0.7*n)))
+index.test <- (1:n)[-index.train]
+
+Xtrain <- X[index.train,]
+Ytrain <- Y[index.train,]
+
+Xtest <- X[index.test,]
+Ytest <- Y[index.test,]
+
+### fitting the model, and predicting new observations
+model1 <- rirls.spls(Xtrain=Xtrain, Ytrain=Ytrain, lambda.ridge=2, lambda.l1=0.5, ncomp=2, 
+                     Xtest=Xtest, adapt=TRUE, maxIter=100, svd.decompose=TRUE)
+str(model1)
+
+### prediction error rate
+sum(model1$hatYtest!=Ytest) / length(index.test)
+
+
+
+
+
+###############################################################################################
+cleanEx()
+nameEx("rirls.spls.tune")
+### * rirls.spls.tune
+
+flush(stderr()); flush(stdout())
+
+### Name: rirls.spls.tune
+### Title: Tuning parameters (ncomp, lambda.l1, lambda.ridge) for Ridge Iteratively Reweighted Least Squares 
+###        followed by Adaptive Sparse PLS regression for binary response, by K-fold cross-validation
+### Aliases: rirls.spls.tune
+### Keywords: multivariate
+
+### ** Examples
+
+### load plsgenomics library
+library(plsgenomics)
+
+### generating data
+n <- 50
+p <- 100
+sample1 <- sample.bin(n=n, p=p, kstar=20, lstar=2, beta.min=0.25, beta.max=0.75, mean.H=0.2, 
+                      sigma.H=10, sigma.F=5)
+
+X <- sample1$X
+Y <- sample1$Y
+
+### hyper-parameters values to test
+lambda.l1.range <- seq(0.05,0.95,by=0.3) # between 0 and 1
+ncomp.range <- 1:2
+
+# log-linear range between 0.01 a,d 1000 for lambda.ridge.range
+logspace <- function( d1, d2, n) exp(log(10)*seq(d1, d2, length.out=n)) 
+lambda.ridge.range <- signif(logspace(d1 <- -2, d2 <- 3, n=6), digits=3)
+
+### tuning the hyper-parameters
+cv1 <- rirls.spls.tune(X=X, Y=Y, lambda.ridge.range=lambda.ridge.range, 
+                       lambda.l1.range=lambda.l1.range, ncomp.range=ncomp.range, 
+                       adapt=TRUE, maxIter=100, svd.decompose=TRUE, 
+                       return.grid=TRUE, ncores=1, nfolds=10)
+str(cv1)
+
+
+
+
+
+
+
+###############################################################################################
 
 ### * <FOOTER>
 ###

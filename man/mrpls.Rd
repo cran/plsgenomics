@@ -48,20 +48,22 @@ mrpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
   \item{DeletedCol}{the vector containing the column number of \code{Xtrain} when the 
   variance of the corresponding predictor variable is null. Otherwise \code{DeletedCol}=NULL}
   \item{hatY}{If \code{ncomp} is greater than 1, \code{hatY} is a matrix of size ntest x ncomp 
-  in such a way that the kth column corresponds to the predicted label obtained with k PLS components.}
+  in such a way that the kth column corresponds to the predicted label obtained with k 
+  PLS components.}
 
   }
 
 \references{
  
- G. Fort, S. Lambert-Lacroix and Julie Peyre (2005). R�duction de dimension dans les mod�les 
- lin�aires g�n�ralis�s : application � la classification supervis�e de donn�es issues des biopuces.
+ G. Fort, S. Lambert-Lacroix and Julie Peyre (2005). Reduction de dimension dans les modeles 
+ lineaires generalises : application a la classification supervisee de donnees issues des biopuces.
  Journal de la SFDS, tome 146, n1-2, 117-152. 
 
 }
 
 \author{
-  Sophie Lambert-Lacroix (\url{http://www-lmc.imag.fr/lmc-sms/Sophie.Lambert}). 
+  Sophie Lambert-Lacroix 
+  (\url{http://membres-timc.imag.fr/Sophie.Lambert/}). 
 
 }
 \seealso{\code{\link{mrpls.cv}}, \code{\link{rpls}}, \code{\link{rpls.cv}}.}
@@ -72,10 +74,12 @@ library(plsgenomics)
 
 # load SRBCT data
 data(SRBCT)
-IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
+IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),
+			sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
 
 # perform prediction by MRPLS
-res <- mrpls(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,ncomp=2,Xtest=SRBCT$X[-IndexLearn,])
+res <- mrpls(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,ncomp=2,
+			Xtest=SRBCT$X[-IndexLearn,])
 sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 
 # prediction for another sample

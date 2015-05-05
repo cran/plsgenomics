@@ -12,8 +12,8 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
   \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
   observation.}
-  \item{LambdaRange}{the vector of positive real value from which the best ridge regularization parameter
-  has to be chosen by cross-validation.}
+  \item{LambdaRange}{the vector of positive real value from which the best ridge regularization 
+  parameter has to be chosen by cross-validation.}
   \item{hARange}{the vector of strictly positive real value from which the best bandwidth
   has to be chosen by cross-validation for GSIM step A.}
   \item{hB}{a strictly positive real value. \code{hB} is the bandwidth for 
@@ -34,8 +34,8 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
   used for classification with GSIM for binary data (for categorical data see 
   \code{\link{mgsim}} and \code{\link{mgsim.cv}}).
   At each cross-validation run, \code{Xtrain} is split into a pseudo training
-  set (ntrain - 1 samples) and a pseudo test set (1 sample) and the classification error rate is determined for each
-  value of ridge regularization parameter and bandwidth. Finally, the function 
+  set (ntrain - 1 samples) and a pseudo test set (1 sample) and the classification error rate is 
+  determined for each value of ridge regularization parameter and bandwidth. Finally, the function 
   \code{gsim.cv} returns the values of the ridge regularization parameter and 
   bandwidth for which the mean classification error rate is minimal. 
   
@@ -50,12 +50,15 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
 
 \references{
  
- S. Lambert-Lacroix,  J. Peyre . (2006) Local likelyhood regression in  generalized linear single-index models with applications to microarrays data. Computational Statistics and Data Analysis, vol 51, n 3, 2091-2113.
+ S. Lambert-Lacroix,  J. Peyre . (2006) Local likelyhood regression in  generalized linear 
+ single-index models with applications to microarrays data. Computational Statistics and 
+ Data Analysis, vol 51, n 3, 2091-2113.
 
 }
 
 \author{
-  Sophie Lambert-Lacroix (\url{http://www-lmc.imag.fr/lmc-sms/Sophie.Lambert}) 
+  Sophie Lambert-Lacroix 
+  (\url{http://membres-timc.imag.fr/Sophie.Lambert/}) 
    and 
   Julie Peyre (\url{http://www-lmc.imag.fr/lmc-sms/Julie.Peyre/}).
 }
@@ -75,7 +78,8 @@ Ytrain <- Colon$Y[IndexLearn]
 Xtest <- Colon$X[-IndexLearn,]
 
 # preprocess data
-resP <- preprocess(Xtrain= Xtrain, Xtest=Xtest,Threshold = c(100,16000),Filtering=c(5,500),log10.scale=TRUE,row.stand=TRUE)
+resP <- preprocess(Xtrain= Xtrain, Xtest=Xtest,Threshold = c(100,16000),Filtering=c(5,500),
+				log10.scale=TRUE,row.stand=TRUE)
 
 # Determine optimum h and lambda
 hl <- gsim.cv(Xtrain=resP$pXtrain,Ytrain=Ytrain,hARange=c(7,20),LambdaRange=c(0.1,1),hB=NULL)

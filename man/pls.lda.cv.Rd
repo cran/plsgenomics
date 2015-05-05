@@ -14,8 +14,8 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
   observations. The classes must be coded as 1,...,K (K>=2).}
   \item{ncomp}{the vector of integers from which the best number of latent 
   components has to be chosen by cross-validation. If \code{ncomp} is of length
-  1, the best number of components is chosen from  1,...,\code{ncomp}.}  \item{nruncv}{the number of cross-validation iterations to be performed for the choice of
-  the number of latent components.}
+  1, the best number of components is chosen from  1,...,\code{ncomp}.}  \item{nruncv}{the number 
+  of cross-validation iterations to be performed for the choice of the number of latent components.}
   \item{alpha}{the proportion of observations to be included in the training set at
   each cross-validation iteration.}
   \item{priors}{The class priors to be used for linear discriminant analysis. If
@@ -23,9 +23,9 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
    
 }
 \description{
- The function \code{pls.lda.cv} determines the best number of latent components to be used for classification
-  with PLS dimension reduction and linear discriminant analysis as described in
-  Boulesteix (2004). 
+ The function \code{pls.lda.cv} determines the best number of latent components to be used for 
+ classification with PLS dimension reduction and linear discriminant analysis as described in
+ Boulesteix (2004). 
   
 }
 
@@ -53,7 +53,8 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
  A. L. Boulesteix (2004). PLS dimension reduction for classification with microarray data,
  Statistical Applications in Genetics and Molecular Biology \bold{3}, Issue 1, Article 33.
 
- A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+ A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis 
+ of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
 
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
@@ -61,7 +62,9 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
    
  
 
@@ -75,7 +78,8 @@ library(plsgenomics)
 # load leukemia data
 data(leukemia)
 
-# Determine the best number of components to be used for classification using the cross-validation procedure
+# Determine the best number of components to be used for classification using the 
+# cross-validation procedure
 # choose the best number from 2,3,4
 pls.lda.cv(Xtrain=leukemia$X,Ytrain=leukemia$Y,ncomp=2:4,nruncv=20)
 # choose the best number from 1,2,3

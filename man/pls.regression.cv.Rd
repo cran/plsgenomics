@@ -9,11 +9,10 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
   \item{Xtrain}{a (ntrain x p) data matrix containing the predictors for the training data set.
    \code{Xtrain} may be a matrix or a data frame. Each row is an observation and each column is a 
    predictor variable.}
-  \item{Ytrain}{a (ntrain x m) data matrix of responses. \code{Ytrain} may be a vector (if m=1), a matrix or a data frame. 
-  If \code{Ytrain} is a matrix or a data
-  frame, each row is an observation and each column is a response variable. If
-  \code{Ytrain} is a vector, it contains the unique response variable for each
-  observation.}
+  \item{Ytrain}{a (ntrain x m) data matrix of responses. \code{Ytrain} may be a vector (if m=1), 
+  a matrix or a data frame. If \code{Ytrain} is a matrix or a data frame, each row is an 
+  observation and each column is a response variable. If \code{Ytrain} is a vector, it contains 
+  the unique response variable for each observation.}
   \item{ncomp}{the vector of integers from which the best number of latent 
   components has to be chosen by cross-validation. If \code{ncomp} is of length
   1, the best number of components is chosen from  1,...,\code{ncomp}.}
@@ -24,8 +23,8 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
 }
 
 \description{
- The function \code{pls.regression.cv} determines the best number of latent components to be used for PLS regression using the cross-validation
-  approach described in Boulesteix and Strimmer (2005).
+ The function \code{pls.regression.cv} determines the best number of latent components to be used 
+ for PLS regression using the cross-validation approach described in Boulesteix and Strimmer (2005).
 }
 
 \details{
@@ -49,7 +48,8 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
  A. L. Boulesteix and K. Strimmer (2005). Predicting Transcription Factor Activities 
  from Combined Analysis of Microarray and ChIP Data: A Partial Least Squares Approach.
  
-  A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+  A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of 
+  high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
 
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
@@ -57,7 +57,9 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
    and 
   Korbinian Strimmer (\url{http://strimmerlab.org/}).
 

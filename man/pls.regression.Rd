@@ -8,11 +8,10 @@ pls.regression(Xtrain, Ytrain, Xtest=NULL, ncomp=NULL,  unit.weights=TRUE)
 \arguments{
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} may be a matrix or a
   data frame. Each row corresponds to an observation and each column to a predictor variable.}
-  \item{Ytrain}{a (ntrain x m) data matrix of responses. \code{Ytrain} may be a vector (if m=1), a matrix or a data frame. 
-  If \code{Ytrain} is a matrix or a data
-  frame, each row corresponds to an observation and each column to a response variable. If
-  \code{Ytrain} is a vector, it contains the unique response variable for each
-  observation.}
+  \item{Ytrain}{a (ntrain x m) data matrix of responses. \code{Ytrain} may be a vector (if m=1), 
+  a matrix or a data frame. If \code{Ytrain} is a matrix or a data frame, each row corresponds 
+  to an observation and each column to a response variable. If \code{Ytrain} is a vector, it 
+  contains the unique response variable for each observation.}
   \item{Xtest}{a (ntest x p) matrix containing the predictors for the test data
   set. \code{Xtest} may also be a
   vector of length p (corresponding to only one test observation).}
@@ -26,16 +25,16 @@ pls.regression(Xtrain, Ytrain, Xtest=NULL, ncomp=NULL,  unit.weights=TRUE)
     norm 1.}
 }
 \description{
- The function \code{pls.regression} performs pls multivariate regression (with several response variables and 
-  several predictor variables) using de Jong's SIMPLS algorithm. This function
-  is an adaptation of R. Wehrens' code from the package pls.pcr. 
+ The function \code{pls.regression} performs pls multivariate regression (with several response 
+ variables and several predictor variables) using de Jong's SIMPLS algorithm. This function 
+ is an adaptation of R. Wehrens' code from the package pls.pcr. 
   
 }
 
 \details{
-  The columns of the data matrices \code{Xtrain} and \code{Ytrain} must not be centered to have mean
-  zero, since centering is performed by the function \code{pls.regression} as a preliminary step
-  before the SIMPLS algorithm is run. 
+  The columns of the data matrices \code{Xtrain} and \code{Ytrain} must not be centered to have 
+  mean zero, since centering is performed by the function \code{pls.regression} as a preliminary 
+  step before the SIMPLS algorithm is run. 
 
   In the original definition of SIMPLS by de Jong (1993), the weight vectors have
   length 1. If the weight vectors are standardized to have length 1, 
@@ -51,8 +50,8 @@ pls.regression(Xtrain, Ytrain, Xtest=NULL, ncomp=NULL,  unit.weights=TRUE)
 
 \value{
   A list with the following components:
-  \item{B}{the (p x m x length(\code{ncomp})) matrix containing the regression coefficients. Each row corresponds
-  to a predictor variable and each column to a response variable. The third
+  \item{B}{the (p x m x length(\code{ncomp})) matrix containing the regression coefficients. Each 
+  row corresponds to a predictor variable and each column to a response variable. The third
   dimension of the matrix \code{B} corresponds to the number of PLS components used
   to compute the regression coefficients. If \code{ncomp} has length 1, \code{B}
   is just a (p x m) matrix.}
@@ -79,12 +78,15 @@ pls.regression(Xtrain, Ytrain, Xtest=NULL, ncomp=NULL,  unit.weights=TRUE)
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
    and 
   Korbinian Strimmer (\url{http://strimmerlab.org/}).
 
  Adapted in part from 
-  pls.pcr code by R. Wehrens (\url{http://cran.r-project.org/src/contrib/Descriptions/pls.html}). 
+  pls.pcr code by R. Wehrens (in a former version of the 'pls' package
+  \url{http://cran.r-project.org/web/packages/pls/index.html}). 
 
 
 }
@@ -100,10 +102,12 @@ data(Ecoli)
 
 # perform pls regression
 # with unit latent components
-pls.regression(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,Xtest=Ecoli$CONNECdata,ncomp=1:3,unit.weights=FALSE)
+pls.regression(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,Xtest=Ecoli$CONNECdata,
+			ncomp=1:3,unit.weights=FALSE)
 
 # with unit weight vectors
-pls.regression(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,Xtest=Ecoli$CONNECdata,ncomp=1:3,unit.weights=TRUE)
+pls.regression(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,Xtest=Ecoli$CONNECdata,
+			ncomp=1:3,unit.weights=TRUE)
 
 
 }

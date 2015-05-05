@@ -9,8 +9,8 @@ TFA.estimate(CONNECdata, GEdata, ncomp=NULL, nruncv=0, alpha=2/3, unit.weights=T
  \item{CONNECdata}{a (n x p) matrix containing the ChIP data for the n genes and the
   p predictors. The n genes must be the same as the n genes of \code{GEdata} and the ordering
   of the genes must also be the same. Each row of \code{ChIPdata} corresponds to a gene, each
-  column to a transcription factor. \code{CONNECdata} might have either binary (e.g. 0-1) or numeric
-  entries.}
+  column to a transcription factor. \code{CONNECdata} might have either binary (e.g. 0-1) or 
+  numeric entries.}
   \item{GEdata}{a (n x m) matrix containing the gene expression levels of the n
  considered genes for m samples. Each row of \code{GEdata} corresponds to a gene, each
   column to a sample.}
@@ -32,9 +32,9 @@ TFA.estimate(CONNECdata, GEdata, ncomp=NULL, nruncv=0, alpha=2/3, unit.weights=T
 }
 
 \description{
- The function \code{TFA.estimate} estimates the transcription factor activities from gene expression data and
-  ChIP data using the PLS multivariate regression approach described in Boulesteix and Strimmer
-  (2005).
+ The function \code{TFA.estimate} estimates the transcription factor activities from gene 
+ expression data and ChIP data using the PLS multivariate regression approach described 
+ in Boulesteix and Strimmer (2005).
 }
 
 \details{
@@ -65,7 +65,8 @@ might be used as argument  in place of ChIP data.
 A. L. Boulesteix and K. Strimmer (2005). Predicting Transcription Factor Activities 
 from Combined Analysis of Microarray and ChIP Data: A Partial Least Squares Approach.
  
- A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
+ A. L. Boulesteix, K. Strimmer (2007). Partial least squares: a versatile tool for the analysis 
+ of high-dimensional genomic data. Briefings in Bioinformatics 7:32-44.
 
  S. de Jong (1993). SIMPLS: an alternative approach to partial least squares 
  regression, Chemometrics Intell. Lab. Syst. \bold{18}, 251--263.
@@ -73,7 +74,9 @@ from Combined Analysis of Microarray and ChIP Data: A Partial Least Squares Appr
 }
 
 \author{
-  Anne-Laure Boulesteix (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/index.html}) 
+  Anne-Laure Boulesteix 
+  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
+  020_professuren/boulesteix/index.html}) 
    and 
   Korbinian Strimmer (\url{http://strimmerlab.org}).
 

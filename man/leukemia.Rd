@@ -30,7 +30,8 @@ A list with the following elements:
 
 \source{The dataset was taken from
 the R package multtest. The data are described in Golub et al. (1999) and can be freely
-downloaded from \url{http://www-genome.wi.mit.edu/MPR/}.}
+downloaded from 
+\url{http://www.broadinstitute.org/cgi-bin/cancer/publications/pub_paper.cgi?paper_id=43}.}
 
 \references{
  S. Dudoit, J. Fridlyand and T. P. Speed (2002). Comparison of discrimination
