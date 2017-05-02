@@ -25,67 +25,67 @@
 
 pls.lda<-function(Xtrain, Ytrain, Xtest=NULL, ncomp, nruncv=0, alpha=2/3, priors=NULL)
 {
-ntrain<-nrow(Xtrain)
-Ytrain<-as.factor(Ytrain)
-
-if (is.vector(Xtest))
- {
- Xtest<-matrix(Xtest,1,length(Xtest))
- }
-if (is.null(Xtest))
- {
- Xtest<-Xtrain
- }
-if (nruncv==0&length(ncomp)>1) 
- stop("Since length(ncomp)>1, nruncv must be >0")
- 
-if (nruncv>0)
- {
- ncomp<-pls.lda.cv(Xtrain,Ytrain,ncomp=ncomp,nruncv=nruncv,alpha=alpha,priors=priors)
- }
-
-pls.out<-pls.regression(Xtrain=Xtrain,Ytrain=transformy(Ytrain),Xtest=NULL,ncomp=ncomp)
-
-Ztrain<-as.data.frame(matrix(pls.out$T,ntrain,ncomp))
-Ztrain$y<-Ytrain
-Ztest<-as.data.frame(scale(Xtest,center=pls.out$meanX,scale=FALSE)%*%pls.out$R)
-if (is.null(priors))
+     ntrain<-nrow(Xtrain)
+     Ytrain<-as.factor(Ytrain)
+     
+     if (is.vector(Xtest))
      {
-     lda.out <- lda(formula = y ~ ., data = Ztrain)
+          Xtest<-matrix(Xtest,1,length(Xtest))
      }
-    else
+     if (is.null(Xtest))
      {
-     lda.out <- lda(formula = y ~ ., data = Ztrain, prior = priors)
+          Xtest<-Xtrain
      }
-
-
-predclass<-predict(object=lda.out,newdata=Ztest)$class
-
-return(list(predclass=predclass,ncomp=ncomp))
+     if (nruncv==0&length(ncomp)>1) 
+          stop("Since length(ncomp)>1, nruncv must be >0")
+     
+     if (nruncv>0)
+     {
+          ncomp<-pls.lda.cv(Xtrain,Ytrain,ncomp=ncomp,nruncv=nruncv,alpha=alpha,priors=priors)
+     }
+     
+     pls.out<-pls.regression(Xtrain=Xtrain,Ytrain=transformy(Ytrain),Xtest=NULL,ncomp=ncomp)
+     
+     Ztrain<-as.data.frame(matrix(pls.out$T,ntrain,ncomp))
+     Ztrain$y<-Ytrain
+     Ztest<-as.data.frame(scale(Xtest,center=pls.out$meanX,scale=FALSE)%*%pls.out$R)
+     if (is.null(priors))
+     {
+          lda.out <- lda(formula = y ~ ., data = Ztrain)
+     }
+     else
+     {
+          lda.out <- lda(formula = y ~ ., data = Ztrain, prior = priors)
+     }
+     
+     
+     pred.lda.out <- predict(object=lda.out,newdata=Ztest)
+     predclass <- pred.lda.out$class
+     
+     return(list(predclass=predclass,ncomp=ncomp, pls.out=pls.out, lda.out=lda.out, pred.lda.out=pred.lda.out))
 }
 
 ############################
 
 transformy<-function(y)
 {
-y<-as.numeric(y)
-K<-max(y)
-if (K>2)
- {
- Y<-matrix(0,length(y),K)
- for (k in 1:K)
-  {
-  Y[,k]<-as.numeric(y==k)
-  Y[,k]<-Y[,k]-mean(Y[,k])
-  }
- }
-else
- {
- Y<-matrix(y-mean(y),length(y),1)
- }
- 
-Y
+     y<-as.numeric(y)
+     K<-max(y)
+     if (K>2)
+     {
+          Y<-matrix(0,length(y),K)
+          for (k in 1:K)
+          {
+               Y[,k]<-as.numeric(y==k)
+               Y[,k]<-Y[,k]-mean(Y[,k])
+          }
+     }
+     else
+     {
+          Y<-matrix(y-mean(y),length(y),1)
+     }
+     
+     Y
 }
-
 
 

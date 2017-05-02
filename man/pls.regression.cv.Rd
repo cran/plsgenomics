@@ -57,11 +57,10 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
 }
 
 \author{
-  Anne-Laure Boulesteix 
-  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
-  020_professuren/boulesteix/index.html}) 
-   and 
-  Korbinian Strimmer (\url{http://strimmerlab.org/}).
+Anne-Laure Boulesteix 
+(\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/eng.html}) 
+and 
+Korbinian Strimmer (\url{http://strimmerlab.org/}).
 
 
 }
@@ -72,6 +71,8 @@ pls.regression.cv(Xtrain, Ytrain, ncomp, nruncv=20, alpha=2/3)
 \code{\link{pls.lda.cv}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -84,5 +85,6 @@ pls.regression.cv(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,ncomp=4,nruncv=20)
 # choose the best number from 2,3
 pls.regression.cv(Xtrain=Ecoli$CONNECdata,Ytrain=Ecoli$GEdata,ncomp=c(2,3),nruncv=20)
 
+}
 }
 

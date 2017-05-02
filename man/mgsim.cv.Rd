@@ -65,6 +65,8 @@ Data Analysis, vol 51, n 3, 2091-2113.
 \seealso{\code{\link{mgsim}}, \code{\link{gsim}}, \code{\link{gsim.cv}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -84,5 +86,6 @@ IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),
 #res$Cvg
 #sum(res$Ytest!=SRBCT$Y[-IndexLearn])
 
+}
 }
 

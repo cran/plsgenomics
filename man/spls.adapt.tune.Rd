@@ -99,6 +99,8 @@ spls.adapt.tune(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL, adapt=TRUE,
 \seealso{\code{\link{spls.adapt}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 ### load plsgenomics library
 library(plsgenomics)
 
@@ -122,4 +124,5 @@ str(cv1)
 cv1$lambda.l1.opt
 cv1$ncomp.opt
 
+}
 }

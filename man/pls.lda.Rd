@@ -56,7 +56,12 @@ discriminant analysis applied on the PLS components.
   \item{predclass}{the vector containing the predicted classes of the ntest observations from
   \code{Xtest}.}
   \item{ncomp}{the number of latent components used for classification.}
-  
+  \item{pls.out}{an object containing the results from the call of the \code{pls.regression}
+  function (from the \code{plsgenomics} package).}
+  \item{lda.out}{an object containing the results from the call of the \code{lda} 
+  function (from the \code{MASS} package).}
+  \item{pred.lda.out}{an object containing the results from the call of the \code{predict.lda} 
+  function (from the \code{MASS} package).}
   
 }
 
@@ -74,9 +79,8 @@ discriminant analysis applied on the PLS components.
 }
 
 \author{
-  Anne-Laure Boulesteix 
-  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
-  020_professuren/boulesteix/index.html}) 
+Anne-Laure Boulesteix 
+(\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/eng.html}) 
   
  
 
@@ -94,7 +98,7 @@ data(leukemia)
 # Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), 
 # with 2 PLS components
 pls.lda(Xtrain=leukemia$X[-(1:3),],Ytrain=leukemia$Y[-(1:3)],Xtest=leukemia$X[1:3,],
-		ncomp=2,nruncv=0)
+     	ncomp=2,nruncv=0)
 
 # Classify observations 1,2,3 (test set) using observations 4 to 38 (training set), 
 # with the best number of components as determined by cross-validation

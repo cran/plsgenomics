@@ -66,6 +66,8 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
 \seealso{\code{\link{mgsim}}, \code{\link{gsim}}, \code{\link{gsim.cv}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -88,6 +90,6 @@ hl <- gsim.cv(Xtrain=resP$pXtrain,Ytrain=Ytrain,hARange=c(7,20),LambdaRange=c(0.
 res <- gsim(Xtrain=resP$pXtrain,Ytrain=Ytrain,Xtest=resP$pXtest,Lambda=hl$Lambda,hA=hl$hA,hB=NULL)
 res$Cvg
 sum(res$Ytest!=Colon$Y[-IndexLearn])
-
+}
 }
 

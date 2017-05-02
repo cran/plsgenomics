@@ -61,7 +61,8 @@ mrpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
 \seealso{\code{\link{mrpls}}, \code{\link{rpls}}, \code{\link{rpls.cv}}.}
 
 \examples{
-# load plsgenomics library
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -78,5 +79,6 @@ nl <- mrpls.cv(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],
 res <- mrpls(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=nl$Lambda,
 			ncomp=nl$ncomp,Xtest=SRBCT$X[-IndexLearn,])
 sum(res$Ytest!=SRBCT$Y[-IndexLearn])
+}
 }
 

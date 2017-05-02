@@ -62,9 +62,8 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
 }
 
 \author{
-  Anne-Laure Boulesteix 
-  (\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/
-  020_professuren/boulesteix/index.html}) 
+Anne-Laure Boulesteix 
+(\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/eng.html}) 
    
  
 
@@ -72,6 +71,8 @@ pls.lda.cv(Xtrain, Ytrain,  ncomp, nruncv=20, alpha=2/3, priors=NULL)
 \seealso{\code{\link{pls.lda}}, \code{\link{pls.regression.cv}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -85,6 +86,6 @@ pls.lda.cv(Xtrain=leukemia$X,Ytrain=leukemia$Y,ncomp=2:4,nruncv=20)
 # choose the best number from 1,2,3
 pls.lda.cv(Xtrain=leukemia$X,Ytrain=leukemia$Y,ncomp=3,nruncv=20)
 
-
+}
 }
 \keyword{multivariate}

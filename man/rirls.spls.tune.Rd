@@ -89,6 +89,8 @@ Squares followed by Adaptive Sparse PLS regression for binary response, by K-fol
 \seealso{\code{\link{rirls.spls}}.}
 
 \examples{
+\dontrun{
+## between 5~15 seconds
 ### load plsgenomics library
 library(plsgenomics)
 
@@ -116,4 +118,5 @@ cv1 <- rirls.spls.tune(X=X, Y=Y, lambda.ridge.range=lambda.ridge.range,
                          return.grid=TRUE, ncores=1, nfolds=10)
 str(cv1)
 	
+}
 }

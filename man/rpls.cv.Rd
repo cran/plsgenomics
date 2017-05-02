@@ -61,7 +61,8 @@ rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
 \seealso{\code{\link{rpls}}, \code{\link{mrpls}}, \code{\link{mrpls.cv}}.}
 
 \examples{
-# load plsgenomics library
+\dontrun{
+## between 5~15 seconds
 # load plsgenomics library
 library(plsgenomics)
 
@@ -83,5 +84,6 @@ resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=nl$Lambda,
 			ncomp=nl$ncomp,Xtest=res$pXtest)
 sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
 
+}
 }
 

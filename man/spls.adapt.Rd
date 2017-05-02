@@ -131,7 +131,7 @@ spls.adapt(Xtrain, Ytrain, lambda.l1, ncomp, weight.mat=NULL, Xtest=NULL, adapt=
 	Ghislain Durif (\url{http://lbbe.univ-lyon1.fr/-Durif-Ghislain-.html}). 
      
      Adapted in part from spls code by H. Chun, D. Chung and S.Keles 
-     (\url{http://cran.r-project.org/web/packages/spls/index.html}).
+     (\url{https://cran.r-project.org/package=spls}).
 
 }
 \seealso{\code{\link{spls.adapt.tune}}.}
