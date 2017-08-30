@@ -1,6 +1,6 @@
-### rirls.spls.aux.R  (2014-10)
+### logit.spls.aux.R  (2014-10)
 ###
-###    Ridge Iteratively Reweighted Least Squares followed by Adaptive Sparse PLS regression for binary responser
+###    Ridge Iteratively Reweighted Least Squares followed by Adaptive Sparse PLS regression for binary response
 ###    Short version for multiple call in cross-validation procedure
 ###
 ### Copyright 2014-10 Ghislain DURIF
@@ -24,7 +24,11 @@
 ### MA 02111-1307, USA
 
 
-rirls.spls.aux <- function(sXtrain, sXtrain.nosvd=NULL, Ytrain, lambda.ridge, lambda.l1, ncomp, sXtest, sXtest.nosvd=NULL, adapt=TRUE, maxIter=100, svd.decompose=TRUE, meanXtrain, sigma2train) {
+logit.spls.aux <- function(sXtrain, sXtrain.nosvd=NULL, Ytrain, lambda.ridge, 
+                           lambda.l1, ncomp, sXtest, sXtest.nosvd=NULL, 
+                           adapt=TRUE, maxIter=100, svd.decompose=TRUE, 
+                           meanXtrain, sigma2train, 
+                           center.X=TRUE, scale.X=FALSE, weighted.center=TRUE) {
 	
 	
 	#####################################################################
@@ -50,7 +54,7 @@ rirls.spls.aux <- function(sXtrain, sXtrain.nosvd=NULL, Ytrain, lambda.ridge, la
 	
 	#  Check WIRRLS convergence
 	if (converged==0) {
-		warning("Message from rirls.spls : Ridge IRLS did not converge; try another lambda.ridge value")
+		warning("Message from logit.spls.aux : Ridge IRLS did not converge; try another lambda.ridge value")
 	}
 	
 	# if ncomp == 0 then wirrls without spls step
@@ -101,10 +105,12 @@ rirls.spls.aux <- function(sXtrain, sXtrain.nosvd=NULL, Ytrain, lambda.ridge, la
 		VmeansXtrain <- t(diagV)%*%sXtrain/sumV
 		
 		# SPLS(X, pseudo-var, weighting = V)
-		resSPLS = spls.adapt(Xtrain=sXtrain, Ytrain=pseudoVar, ncomp=ncomp, weight.mat=V, lambda.l1=lambda.l1, adapt=adapt, center.X=TRUE, scale.X=FALSE, center.Y=TRUE, scale.Y=FALSE, weighted.center=TRUE)
+		resSPLS = spls.in(Xtrain=sXtrain, Ytrain=pseudoVar, ncomp=ncomp, weight.mat=V, lambda.l1=lambda.l1, adapt=adapt, center.X=center.X, scale.X=scale.X, center.Y=TRUE, scale.Y=FALSE, weighted.center=weighted.center)
 		
 		BETA = resSPLS$betahat.nc
 		
+	}  else {
+          resSPLS = list(lenA=0)
 	}
 	
 	
@@ -122,15 +128,19 @@ rirls.spls.aux <- function(sXtrain, sXtrain.nosvd=NULL, Ytrain, lambda.ridge, la
 	
 	Coefficients=BETA
 	
-	Coefficients[-1] <- diag(c(1/sqrt(sigma2train)))%*%BETA[-1]
+	if(p > 1) {
+	     Coefficients[-1] <- diag(c(1/sqrt(sigma2train)))%*%BETA[-1]
+	} else {
+	     Coefficients[-1] <- (1/sqrt(sigma2train))%*%BETA[-1]
+	}
 	
 	Coefficients[1] <- BETA[1] - meanXtrain %*% Coefficients[-1]
 	
 	
 	#### RETURN
 	
-	result <- list(Coefficients=Coefficients, hatYtest=hatYtest, converged=converged)
-	class(result) <- "rirls.spls.aux"
+	result <- list(Coefficients=Coefficients, hatYtest=hatYtest, converged=converged, lenA=resSPLS$lenA)
+	class(result) <- "logit.spls.aux"
 	return(result)
 		
 }

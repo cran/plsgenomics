@@ -1,4 +1,4 @@
-### spls.adapt.aux.R  (2014-10)
+### spls.aux.R  (2014-10)
 ###
 ###    Adaptive Sparse PLS regression for continuous response
 ###    Short version for multiple call in cross-validation procedure
@@ -27,7 +27,10 @@
 ### MA 02111-1307, USA
 
 
-spls.adapt.aux <- function(Xtrain, sXtrain, Ytrain, sYtrain, lambda.l1, ncomp, weight.mat, Xtest, sXtest, adapt=TRUE, meanXtrain, meanYtrain, sigmaXtrain, sigmaYtrain, center.X, center.Y, scale.X, scale.Y, weighted.center) {
+spls.aux <- function(Xtrain, sXtrain, Ytrain, sYtrain, lambda.l1, ncomp, 
+                     weight.mat, Xtest, sXtest, adapt, 
+                     meanXtrain, meanYtrain, sigmaXtrain, sigmaYtrain, 
+                     center.X, center.Y, scale.X, scale.Y, weighted.center) {
 	
 	#####################################################################
 	#### Initialisation
@@ -183,10 +186,10 @@ spls.adapt.aux <- function(Xtrain, sXtrain, Ytrain, sYtrain, lambda.l1, ncomp, w
 	result <- list( Xtrain=Xtrain, Ytrain=Ytrain, sXtrain=sXtrain, sYtrain=sYtrain, Xtest, sXtest,
 				 betahat=betahat, betahat.nc=betahat.nc,
 				 meanXtrain=meanXtrain, meanYtrain=meanYtrain, sigmaXtrain=sigmaXtrain, sigmaYtrain=sigmaYtrain,
-				 hatYtest=hatYtest, hatYtest.nc=hatYtest.nc
+				 hatYtest=hatYtest, hatYtest.nc=hatYtest.nc, A=A, lenA=length(A)
 				 )
 	
-	class(result) <- "spls.adapt.aux"
+	class(result) <- "spls.aux"
 	return(result)
 	
 	

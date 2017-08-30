@@ -27,7 +27,10 @@
 
 
 
-wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1", center.X=TRUE, scale.X=FALSE, center.Y=TRUE, scale.Y=FALSE, weighted.center=FALSE) {
+wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, 
+                 type="pls1", 
+                 center.X=TRUE, scale.X=FALSE, center.Y=TRUE, scale.Y=FALSE, 
+                 weighted.center=FALSE) {
 		
 	#####################################################################
 	#### Initialisation
@@ -49,10 +52,10 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 		V <- as.matrix(weight.mat) 
 		
 		if ((!is.matrix(V)) || (!is.numeric(V))) {
-			stop("Message from spls.adapt: V is not of valid type")}
+			stop("Message from wpls: V is not of valid type")}
 		
 		if ((ntrain != ncol(V)) || (ntrain != nrow(V))) {
-			stop("Message from spls.adapt: wrong dimension for V, must be a square matrix of size the number of observations in Xtrain")
+			stop("Message from wpls: wrong dimension for V, must be a square matrix of size the number of observations in Xtrain")
 		}
 	} else { # no weighting in scalar product
 		V <- diag(rep(1, ntrain), nrow=ntrain, ncol=ntrain)
@@ -71,7 +74,7 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 		sigmaXtrain <- apply(Xtrain, 2, sd)
 		# test if predictors with null variance
 		if ( any( sigmaXtrain < .Machine$double.eps )) {
-			stop("Some of the columns of the predictor matrix have zero variance.")
+			stop("Message from wpls: Some of the columns of the predictor matrix have zero variance.")
 		}
 		
 		# centering & eventually scaling X
@@ -90,7 +93,7 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 		sigmaYtrain <- apply(Ytrain, 2, sd)
 		# test if predictors with null variance
 		if ( any( sigmaYtrain < .Machine$double.eps )) {
-			stop("The response matrix has zero variance.")
+			stop("Message from wpls: The response matrix has zero variance.")
 		}
 		# centering & eventually scaling Y
 		if(center.Y && scale.Y) {
@@ -126,7 +129,7 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 		sigmaXtrain <- apply(Xtrain, 2, sd)
 		# test if predictors with null variance
 		if ( any( sigmaXtrain < .Machine$double.eps ) ) {
-			stop("Some of the columns of the predictor matrix have zero variance.")
+			stop("Message from wpls: Some of the columns of the predictor matrix have zero variance.")
 		}
 		# centering & eventually scaling X
 		sXtrain <- scale( Xtrain, center=meanXtrain, scale=FALSE )
@@ -138,7 +141,7 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 		sigmaYtrain <- apply(Ytrain, 2, sd)
 		# test if predictors with null variance
 		if ( any( sigmaYtrain < .Machine$double.eps ) ) {
-			stop("The response matrix have zero variance.")
+			stop("Message from wpls: The response matrix have zero variance.")
 		}
 		# centering & eventually scaling Y
 		sYtrain <- scale( Ytrain, center=meanYtrain, scale=FALSE )
@@ -255,15 +258,17 @@ wpls <- function(Xtrain, Ytrain, ncomp, weight.mat=NULL, Xtest=NULL, type="pls1"
 	}
 	
 	#### return object : list( W=W, T=T, Q=Q, P=P, coeff=coeff )
-	result <- list( Xtrain=Xtrain, Ytrain=Ytrain, sXtrain=sXtrain, sYtrain=sYtrain,
-				 betahat=betahat, betahat.nc=betahat.nc,
-				 meanXtrain=meanXtrain, meanYtrain=meanYtrain, sigmaXtrain=sigmaXtrain, sigmaYtrain=sigmaYtrain,
-				 X.score=T, X.loading=P, Y.loading=Q, X.weight=W, 
-				 residuals=residuals, residuals.nc=residuals.nc,
-				 hatY=hatY, hatY.nc=hatY.nc,
-				 hatYtest=hatYtest, hatYtest.nc=hatYtest.nc,
-				 ncomp=ncomp,
-				 V=V, W=W, T=T, Q=Q, P=P, coeff=coeff)
+	# result <- list( Xtrain=Xtrain, Ytrain=Ytrain, sXtrain=sXtrain, sYtrain=sYtrain,
+	# 			 betahat=betahat, betahat.nc=betahat.nc,
+	# 			 meanXtrain=meanXtrain, meanYtrain=meanYtrain, sigmaXtrain=sigmaXtrain, sigmaYtrain=sigmaYtrain,
+	# 			 X.score=T, X.loading=P, Y.loading=Q, X.weight=W, 
+	# 			 residuals=residuals, residuals.nc=residuals.nc,
+	# 			 hatY=hatY, hatY.nc=hatY.nc,
+	# 			 hatYtest=hatYtest, hatYtest.nc=hatYtest.nc,
+	# 			 ncomp=ncomp,
+	# 			 V=V, W=W, T=T, Q=Q, P=P, coeff=coeff)
+	
+	result <- list( W=W, T=T, Q=Q, P=P, coeff=coeff )
 	
 	class(result) <- "wpls"
 	return(result)

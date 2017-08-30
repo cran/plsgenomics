@@ -1,8 +1,10 @@
-### sample.bin.R  (2014-10)
+### sample.multinom.R  (2015-10)
 ###
-###    Generates covariate matrix X with correlated block of covariates and a binary random reponse depening on X through logit model
+###    Generates design matrix X with correlated block of covariates 
+###    and a multicategorial random reponse depending on X through 
+###    a multinomial model
 ###
-### Copyright 2014-10 Ghislain DURIF
+### Copyright 2015-10 Ghislain DURIF
 ###
 ###
 ### This file is part of the `plsgenomics' library for R and related languages.
@@ -22,11 +24,11 @@
 ### MA 02111-1307, USA
 
 #' @title Generates covariate matrix X with correlated block of covariates and 
-#' a binary random reponse depening on X through a logistic model
-#' @aliases sample.bin
+#' a multi-label random reponse depening on X through a multinomial model
+#' @aliases sample.multinom
 #' 
 #' @description
-#' The function \code{sample.bin} generates a random sample of n observations, 
+#' The function \code{sample.multinom} generates a random sample of n observations, 
 #' composed of p predictors, collected in the n x p matrix X, and a binary 
 #' response, in a vector Y of length n, thanks to a logistic model, where the 
 #' response Y is generated as a Bernoulli random variable of parameter 
@@ -53,6 +55,7 @@
 #' 
 #' @param n the number of observations in the sample.
 #' @param p the number of covariates in the sample.
+#' @param nb.class the number of groups in the data.
 #' @param kstar the number of underlying latent variables used to generates 
 #' the covariate matrix \code{X}, \code{kstar <= p}. \code{kstar} is also the 
 #' number of blocks in the covariate matrix (see details).
@@ -120,128 +123,147 @@
 #' ### generating data
 #' n <- 100
 #' p <- 1000
-#' sample1 <- sample.bin(n=n, p=p, kstar=20, lstar=2, beta.min=0.25, 
-#'                       beta.max=0.75, mean.H=0.2, 
-#'                       sigma.H=10, sigma.F=5)
+#' nclass <- 3
+#' sample1 <- sample.multinom(n=n, p=p, nb.class=nclass,
+#'                            kstar=20, lstar=2, beta.min=0.25,
+#'                            beta.max=0.75, mean.H=0.2,
+#'                            sigma.H=10, sigma.F=5)
 #' 
 #' str(sample1)
 #' 
 #' @export
-sample.bin = function(n, p, kstar, lstar, beta.min, beta.max, mean.H=0, sigma.H, sigma.F, seed=NULL) {
-	
-	### input
-	# n : sample size
-	# p : number of covariates
-	# kstar : number of latent variables
-	# lstar : number of blocks of covariates used to generate the response Y
-	# seed : seed for the random generator
-	
-	### tests on input
-	
-	if((!is.null(seed)) && (!is.numeric(seed)) && (round(seed)-seed!=0)) {
-		stop("Message from sample.cont: seed must be integer")
-	}
-	
-	if((!is.numeric(n)) || (round(n)-n!=0) || (!is.numeric(p)) || (round(p)-p!=0) || (!is.numeric(kstar)) || (round(kstar)-kstar!=0) || (!is.numeric(lstar)) || (round(lstar)-lstar!=0) ) {
-		stop("Message from sample.cont: n, p, kstar, lstar must be integer")
-	}
-	
-	if((!is.numeric(mean.H)) || (!is.numeric(sigma.H)) || (!is.numeric(sigma.F)) ) {
-		stop("Message from sample.cont: mean.H, sigma.H, sigma.F, sigma.E are not of valid type")
-	}
-	
-	if((sigma.H<0) || (sigma.F<0)) {
-		stop("Message from sample.cont: sigma.H, sigma.F, sigma.E are not of valid type")
-	}
-	
-	if(n<1) {
-		stop("Message from sample.cont: n<1, must be strict positive integer")
-	}
-	
-	if(p<1) {
-		stop("Message from sample.cont: p<1, must be strict positive integer")
-	}
-	
-	if(kstar<1) {
-		stop("Message from sample.cont: kstar<1, must be strict positive integer")
-	}
-	
-	if(lstar>kstar) {
-		stop("Message from sample.cont: kstar<lstar, try to use more blocks in X than it actually exists")
-	}
-	
-	if(p<kstar) {
-		stop("Message from sample.cont: p<kstar, more blocks than actual covariates")
-	}
-	
-	### random generation
-	if(!is.null(seed)) {
-		set.seed(seed)
-	}
-	
-	# block size
-	block.size <- p %/% kstar
-	last.block.size <- p %/% kstar + p %% kstar
-	
-	# latent variables
-	for(i in 1:kstar) {
-		assign(paste0("H", i), rnorm(n, mean=mean.H, sd=sigma.H))
-	}
-	
-	### generation of X
-	# split into k blocks
-	if(last.block.size==0) {
-		block.partition <- rep(1:kstar, each=block.size)
-	} else {
-		block.partition <- c( rep(1:(kstar-1), each=block.size), rep(kstar, each=last.block.size) ) # the last block has more covariates
-	}
-	
-	# index of the jth column in X determines which latent variables to use to generate it
-	X <- matrix(data=NA, nrow=n, ncol=p)
-	
-	X <- sapply(1:p, function(j) {
-		
-		F <- rnorm(n, mean=0, sd=sigma.F) # noise of column j
-		
-		return(get(paste0("H", block.partition[j]), inherits=TRUE) + F) # on utilise Hj suivant l'intervalle trouve
-		
-	})
-	
-	### generation of Y (binary)
-	Y <- numeric(n)
-	proba <- numeric(n)
-	
-	# selected blocks
-	block.sel <- sort(sample.int(kstar, size=lstar))
-	
-	# linear coefficients: non null in the lstar selected blocks
-	sel <- (1:p)[block.partition %in% block.sel]
-	
-	nosel <- (1:p)[-sel]
-	
-	p0 <- length(sel)
-	
-	B <- numeric(p)
-	B[sel] <- signif(runif(n=p0, min=beta.min, max=beta.max), digits=2)
-	B[nosel] <- rep(0, length.out=p-p0)
-	
-	eta <- X %*% B
-	proba <- inv.logit( drop( eta))
-	Y <- rbinom(1, size=n, prob = proba)
-	
-	for(i in 1:n) {
-		
-		proba[i] <- inv.logit( drop( X[i,] %*% B))
-		Y[i] <- rbinom(1,1, prob = proba[i])
-		
-	}
-	
-	Y <- as.matrix(Y)
-	
-	### output:
-	# sel: index of variables used to generate Y
-	# nosel: index of unused variables
-	
-	return(list(X=X, Y=Y, proba=proba, sel=sel, nosel=nosel, B=B, block.partition=block.partition, n=n, p=p, kstar=kstar, lstar=lstar, p0=p0, block.sel=block.sel, beta.min=beta.min, beta.max=beta.max, mean.H=mean.H, sigma.H=sigma.H, sigma.F=sigma.F, seed=seed))
-
+sample.multinom = function(n, p, nb.class=2, kstar, lstar, beta.min, beta.max, mean.H=0, sigma.H, sigma.F, seed=NULL) {
+     
+     ### input
+     # n : sample size
+     # p : number of covariates
+     # kstar : number of latent variables
+     # lstar : number of blocks of covariates used to generate the response Y
+     # seed : seed for the random generator
+     
+     ### tests on input
+     
+     if((!is.null(seed)) && (!is.numeric(seed)) && (round(seed)-seed!=0)) {
+          stop("Message from sample.cont: seed must be integer")
+     }
+     
+     if((!is.numeric(n)) || (round(n)-n!=0) || (!is.numeric(p)) || (round(p)-p!=0) || (!is.numeric(kstar)) || (round(kstar)-kstar!=0) || (!is.numeric(lstar)) || (round(lstar)-lstar!=0) ) {
+          stop("Message from sample.cont: n, p, kstar, lstar must be integer")
+     }
+     
+     if((!is.numeric(mean.H)) || (!is.numeric(sigma.H)) || (!is.numeric(sigma.F)) ) {
+          stop("Message from sample.cont: mean.H, sigma.H, sigma.F, sigma.E are not of valid type")
+     }
+     
+     if((sigma.H<0) || (sigma.F<0)) {
+          stop("Message from sample.cont: sigma.H, sigma.F, sigma.E are not of valid type")
+     }
+     
+     if(n<1) {
+          stop("Message from sample.cont: n<1, must be strict positive integer")
+     }
+     
+     if(p<1) {
+          stop("Message from sample.cont: p<1, must be strict positive integer")
+     }
+     
+     if(kstar<1) {
+          stop("Message from sample.cont: kstar<1, must be strict positive integer")
+     }
+     
+     if(lstar>kstar) {
+          stop("Message from sample.cont: kstar<lstar, try to use more blocks in X than it actually exists")
+     }
+     
+     if(p<kstar) {
+          stop("Message from sample.cont: p<kstar, more blocks than actual covariates")
+     }
+     
+     ### random generation
+     if(!is.null(seed)) {
+          set.seed(seed)
+     }
+     
+     # block size
+     block.size <- p %/% kstar
+     last.block.size <- p %/% kstar + p %% kstar
+     
+     # latent variables
+     for(i in 1:kstar) {
+          assign(paste0("H", i), rnorm(n, mean=mean.H, sd=sigma.H))
+     }
+     
+     ### generation of X
+     # split into k blocks
+     if(last.block.size==0) {
+          block.partition <- rep(1:kstar, each=block.size)
+     } else {
+          block.partition <- c( rep(1:(kstar-1), each=block.size), rep(kstar, each=last.block.size) ) # the last block has more covariates
+     }
+     
+     # index of the jth column in X determines which latent variables to use to generate it
+     X <- matrix(data=NA, nrow=n, ncol=p)
+     
+     X <- sapply(1:p, function(j) {
+          
+          F <- rnorm(n, mean=0, sd=sigma.F) # noise of column j
+          
+          return(get(paste0("H", block.partition[j]), inherits=TRUE) + F) # on utilise Hj suivant l'intervalle trouve
+          
+     })
+     
+     ### generation of Y (multicategorial)
+     Y <- numeric(n)
+     proba <- numeric(n)
+     
+     # generate nb.class -1 coefficient vector
+     G <- nb.class-1
+     B <- matrix(0, nrow=p, ncol=G)
+     
+     block.sel <- list()
+     for(g in 1:G) {
+          # selected blocks
+          block.sel0 <- sort(sample.int(kstar, size=lstar))
+          block.sel[[g]] <- block.sel0
+          
+          # linear coefficients: non null in the lstar selected blocks
+          sel <- (1:p)[block.partition %in% block.sel0]
+          
+          nosel <- (1:p)[-sel]
+          
+          p0 <- length(sel)
+          
+          B[sel, g] <- signif(runif(n=p0, min=beta.min, max=beta.max), digits=2)
+          B[nosel, g] <- rep(0, length.out=p-p0)
+     }
+     
+     eta <- cbind(rep(0, n), X %*% B)
+     proba <- softMax(eta)
+     
+     for(i in 1:n) {
+          
+          Y[i] <- sample(x=0:G, size=1, prob=proba[i,])
+          
+     }
+     
+     Y <- as.matrix(Y)
+     
+     # list of sel, nosel, p0
+     sel <- lapply(1:G, function(g) {
+          return((1:p)[B[,g]!=0])
+     })
+     nosel <- lapply(1:G, function(g) {
+          return((1:p)[B[,g]==0])
+     })
+     p0 <- lapply(1:G, function(g) {
+          return(sum(B[,g]!=0))
+     })
+     
+     ### output:
+     # sel: index of variables used to generate Y
+     # nosel: index of unused variables
+     
+#      return(list(X=X, Y=Y, proba=proba, sel=sel, nosel=nosel, B=B, block.partition=block.partition, n=n, p=p, kstar=kstar, lstar=lstar, p0=p0, block.sel=block.sel, beta.min=beta.min, beta.max=beta.max, mean.H=mean.H, sigma.H=sigma.H, sigma.F=sigma.F, seed=seed))
+     
+     return(list(X=X, Y=Y, proba=proba, sel=sel, nosel=nosel, B=B, nb.class=nb.class, block.partition=block.partition, n=n, p=p, kstar=kstar, lstar=lstar, p0=p0, block.sel=block.sel, beta.min=beta.min, beta.max=beta.max, mean.H=mean.H, sigma.H=sigma.H, sigma.F=sigma.F, seed=seed))
 }

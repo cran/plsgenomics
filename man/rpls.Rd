@@ -1,5 +1,6 @@
 \name{rpls}
 \alias{rpls}
+\alias{logit.pls}
 
 \title{Ridge Partial Least Square for binary data}
 \usage{
@@ -9,7 +10,7 @@ rpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{0,1\}-valued vector and contains the response variable for each
   observation.}
   \item{Xtest}{a (ntest x p) matrix containing the predictors for the test data
   set. \code{Xtest} may also be a vector of length p (corresponding to only one 
@@ -42,15 +43,21 @@ rpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
 
 \value{
   A list with the following components:
-  \item{Ytest}{the ntest vector containing the predicted labels for the observations from 
-  \code{Xtest}.} 
   \item{Coefficients}{the (p+1) vector containing the coefficients weighting the 
   design matrix.}
+  \item{hatY}{the ntrain vector containing the estimated \{0,1\}-valued labels for the 
+  observations from \code{Xtrain}.}
+  \item{hatYtest}{the ntest vector containing the predicted \{0,1\}-valued labels for the 
+  observations from \code{Xtest}.}
+  \item{proba}{the ntrain vector containing the estimated probabilities for the 
+  observations from \code{Xtrain}.}
+  \item{proba.test}{the ntest vector containing the predicted probabilities for the 
+  observations from \code{Xtest}.}
   \item{DeletedCol}{the vector containing the column number of \code{Xtrain} when the 
   variance of the corresponding predictor variable is null. Otherwise \code{DeletedCol}=NULL}
-  \item{hatY}{If \code{ncomp} is greater than 1, \code{hatY} is a matrix of size ntest x ncomp 
-  in such a way that the kth column corresponds to the predicted label obtained with k 
-  PLS components.}
+  \item{hatYtest_k}{If \code{ncomp} is greater than 1, \code{hatYtest_k} is a \{0,1\}-valued matrix of 
+  size ntest x ncomp in such a way that the kth column corresponds to the predicted label 
+  obtained with k PLS components.}
 
   }
 
@@ -83,7 +90,7 @@ res <- preprocess(Xtrain= Colon$X[IndexLearn,], Xtest=Colon$X[-IndexLearn,],
 # the results are given in res$pXtrain and res$pXtest
 
 # perform prediction by RPLS
-resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=0.6,ncomp=1,Xtest=res$pXtest)
+resrpls <- rpls(Ytrain=Colon$Y[IndexLearn]-1,Xtrain=res$pXtrain,Lambda=0.6,ncomp=1,Xtest=res$pXtest)
 resrpls$hatY
 sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
 
@@ -92,7 +99,7 @@ Xnew <- res$pXtest[1,]
 # Compute the linear predictor for each classes expect class 0
 eta <- c(1,Xnew) \%*\% resrpls$Coefficients
 Ypred <- which.max(c(0,eta))
-Ypred
+Ypred+1
 
 
 

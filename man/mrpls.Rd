@@ -9,7 +9,7 @@ mrpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a \{1,...,c+1\}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{0,...,c\}-valued vector and contains the response variable for each
   observation. c+1 is the number of classes.}
   \item{Xtest}{a (ntest x p) matrix containing the predictors for the test data
   set. \code{Xtest} may also be a vector of length p (corresponding to only one 
@@ -41,15 +41,21 @@ mrpls(Ytrain,Xtrain,Lambda,ncomp,Xtest=NULL,NbIterMax=50)
 
 \value{
   A list with the following components:
-  \item{Ytest}{the ntest vector containing the predicted labels for the observations from 
-  \code{Xtest}.} 
   \item{Coefficients}{the (p+1) x c matrix containing the coefficients weighting the block 
   design matrix.}
+  \item{hatY}{the ntrain vector containing the estimated \{0,...,c\}-valued labels for the 
+  observations from \code{Xtrain}.}
+  \item{hatYtest}{the ntest vector containing the predicted \{0,...,c\}-valued labels for the 
+  observations from \code{Xtest}.}
+  \item{proba}{the ntrain vector containing the estimated probabilities for the 
+  observations from \code{Xtrain}.}
+  \item{proba.test}{the ntest vector containing the predicted probabilities for the 
+  observations from \code{Xtest}.}
   \item{DeletedCol}{the vector containing the column number of \code{Xtrain} when the 
   variance of the corresponding predictor variable is null. Otherwise \code{DeletedCol}=NULL}
-  \item{hatY}{If \code{ncomp} is greater than 1, \code{hatY} is a matrix of size ntest x ncomp 
-  in such a way that the kth column corresponds to the predicted label obtained with k 
-  PLS components.}
+  \item{hatYtest_k}{If \code{ncomp} is greater than 1, \code{hatYtest_k} is a matrix 
+  of size ntest x ncomp in such a way that the kth column corresponds to the 
+  predicted label obtained with k PLS components.}
 
   }
 
@@ -78,16 +84,16 @@ IndexLearn <- c(sample(which(SRBCT$Y==1),10),sample(which(SRBCT$Y==2),4),
 			sample(which(SRBCT$Y==3),7),sample(which(SRBCT$Y==4),9))
 
 # perform prediction by MRPLS
-res <- mrpls(Ytrain=SRBCT$Y[IndexLearn],Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,ncomp=2,
+res <- mrpls(Ytrain=SRBCT$Y[IndexLearn]-1,Xtrain=SRBCT$X[IndexLearn,],Lambda=0.001,ncomp=2,
 			Xtest=SRBCT$X[-IndexLearn,])
-sum(res$Ytest!=SRBCT$Y[-IndexLearn])
+sum(res$Ytest!=SRBCT$Y[-IndexLearn]-1)
 
 # prediction for another sample
 Xnew <- SRBCT$X[83,]
 # Compute the linear predictor for each classes expect class 1
 eta <- diag(t(cbind(c(1,Xnew),c(1,Xnew),c(1,Xnew))) \%*\% res$Coefficients)
 Ypred <- which.max(c(0,eta))
-Ypred
+Ypred+1
 SRBCT$Y[83]
 
 }

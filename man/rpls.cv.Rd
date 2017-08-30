@@ -1,16 +1,17 @@
 \name{rpls.cv}
 \alias{rpls.cv}
+\alias{logit.pls.cv}
 
 \title{Determination of the ridge regularization parameter and the number of PLS 
 components to be used for classification with RPLS for binary data}
 \usage{
-rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
+rpls.cv(Ytrain, Xtrain, LambdaRange, ncompMax, NbIterMax=50, ncores=1)
 }
 \arguments{
   \item{Xtrain}{a (ntrain x p) data matrix of predictors. \code{Xtrain} must be a matrix. 
   Each row corresponds to an observation and each column to a predictor variable.}
   \item{Ytrain}{a ntrain vector of responses. \code{Ytrain} must be a vector. 
-  \code{Ytrain} is a \{1,2\}-valued vector and contains the response variable for each
+  \code{Ytrain} is a \{0,1\}-valued vector and contains the response variable for each
   observation.}
   \item{LambdaRange}{the vector of positive real value from which the best ridge regularization 
   parameter has to be chosen by cross-validation.}
@@ -19,6 +20,8 @@ rpls.cv(Ytrain,Xtrain,LambdaRange,ncompMax,NbIterMax=50)
   reduction dimension. }
   \item{NbIterMax}{a positive integer. \code{NbIterMax} is the maximal number of iterations in the 
   Newton-Rapson parts.}
+  \item{ncores}{a positive integer. The number of cores to be used for parallel computing 
+  (if different from 1)}
 }
 \description{
  The function \code{rpls.cv} determines the best ridge regularization parameter and the best 
@@ -77,12 +80,12 @@ res <- preprocess(Xtrain= Colon$X[IndexLearn,], Xtest=Colon$X[-IndexLearn,],
 # the results are given in res$pXtrain and res$pXtest
 
 # Determine optimum ncomp and lambda
-nl <- rpls.cv(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,LambdaRange=c(0.1,1),ncompMax=3)
+nl <- rpls.cv(Ytrain=Colon$Y[IndexLearn]-1,Xtrain=res$pXtrain,LambdaRange=c(0.1,1),ncompMax=3)
 
 # perform prediction by RPLS
-resrpls <- rpls(Ytrain=Colon$Y[IndexLearn],Xtrain=res$pXtrain,Lambda=nl$Lambda,
+resrpls <- rpls(Ytrain=Colon$Y[IndexLearn]-1,Xtrain=res$pXtrain,Lambda=nl$Lambda,
 			ncomp=nl$ncomp,Xtest=res$pXtest)
-sum(resrpls$Ytest!=Colon$Y[-IndexLearn])
+sum(resrpls$Ytest!=Colon$Y[-IndexLearn]-1)
 
 }
 }

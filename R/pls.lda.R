@@ -87,5 +87,3 @@ transformy<-function(y)
      
      Y
 }
-
-
