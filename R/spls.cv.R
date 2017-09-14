@@ -284,20 +284,37 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	     Xtest <- as.matrix(Xtest)
 	     ntest <- nrow(Xtest)
 	     
+	     DeletedCol <- NULL
+	     
 	     #####################################################################
 	     #### centering and scaling
 	     #####################################################################
 	     if (!weighted.center) {
 	          
-	          # Xtrain mean
-	          meanXtrain <- apply(Xtrain, 2, mean)
-	          
 	          # Xtrain sd
 	          sigmaXtrain <- apply(Xtrain, 2, sd)
-	          # test if predictors with null variance
-	          if ( any( sigmaXtrain < .Machine$double.eps )) {
-	               stop("Some of the columns of the predictor matrix have zero variance.")
+	          # predictor with null variance ?
+	          if (sum(sigmaXtrain < .Machine$double.eps) !=0) {
+                    # predicteur with non null variance < 2 ?
+                    if (sum(sigmaXtrain < .Machine$double.eps)>(p-2)){
+                         stop("Message from spls.cv: the procedure stops because number of predictor variables with no null variance is less than 1.")
+                    }
+                    
+                    warning("Message from spls.cv: There are covariables with null variance in the current sub-sampling, they will be ignored.")
+                    
+                    # remove predictor with null variance
+                    Xtrain <- Xtrain[,which(sigmaXtrain >= .Machine$double.eps)]
+                    Xtest <- Xtest[,which(sigmaXtrain>= .Machine$double.eps)]
+                    
+                    # list of removed predictors
+                    DeletedCol <- index.p[which(sigmaXtrain < .Machine$double.eps)]
+                    
+                    sigmaXtrain <- sigmaXtrain[-DeletedCol]
+	          
 	          }
+	          
+	          # Xtrain mean
+	          meanXtrain <- apply(Xtrain, 2, mean)
 	          
 	          # centering & eventually scaling X
 	          if(center.X && scale.X) {
@@ -348,15 +365,30 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	          
 	          sumV <- sum(diag(V))
 	          
+	          # X sd
+	          # predictor with null variance ?
+	          if (sum(sigmaXtrain < .Machine$double.eps) !=0) {
+	               # predicteur with non null variance < 2 ?
+	               if (sum(sigmaXtrain < .Machine$double.eps)>(p-2)){
+	                    stop("Message from spls.cv: the procedure stops because number of predictor variables with no null variance is less than 1.")
+	               }
+	               
+	               warning("Message from spls.cv: There are covariables with nul variance in the current sub-sampling, they will be ignored.")
+	               
+	               # remove predictor with null variance
+	               Xtrain <- Xtrain[,which(sigmaXtrain >= .Machine$double.eps)]
+	               Xtest <- Xtest[,which(sigmaXtrain>= .Machine$double.eps)]
+	               
+	               # list of removed predictors
+	               DeletedCol <- index.p[which(sigmaXtrain < .Machine$double.eps)]
+	               
+	               sigmaXtrain <- sigmaXtrain[-DeletedCol]
+	               
+	          }
+	          
 	          # X mean
 	          meanXtrain <- matrix(diag(V), nrow=1) %*% Xtrain / sumV
 	          
-	          # X sd
-	          sigmaXtrain <- apply(Xtrain, 2, sd)
-	          # test if predictors with null variance
-	          if ( any( sigmaXtrain < .Machine$double.eps ) ) {
-	               stop("Some of the columns of the predictor matrix have zero variance.")
-	          }
 	          # centering & eventually scaling X
 	          sXtrain <- scale( Xtrain, center=meanXtrain, scale=FALSE )
 	          
@@ -385,6 +417,8 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	     
 	     assign(paste0("sYtrain_", k, "_", run), sYtrain)
 	     assign(paste0("sYtest_", k, "_", run), sYtest)
+	     
+	     assign(paste0("DeletedCol_", k, "_", run), DeletedCol)
 	     
 	     ntrain_values[k,run] <- ntrain
 	     ntest_values[k,run] <- ntest
@@ -418,6 +452,11 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	     Ytest <- subset(Y, folds.obs[,run] == k)
 	     
 	     V <- Vfull[folds.obs != k, folds.obs != k]
+	     
+	     if(!is.null(get(paste0("DeletedCol_", k, "_", run)))) {
+	          Xtrain <- Xtrain[,-get(paste0("DeletedCol_", k, "_", run))]
+	          Xtest <- Xtest[,-get(paste0("DeletedCol_", k, "_", run))]
+	     }
           
 	     ### computations
 	     model <- tryCatch( spls.aux(Xtrain=Xtrain,
@@ -437,13 +476,14 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	                                 center.X=center.X, center.Y=center.Y,
 	                                 scale.X=scale.X, scale.Y=scale.Y,
 	                                 weighted.center=weighted.center),
-	                        error = function(e) { warnings("Message from spls.adapt.cv: error when fitting a model in crossvalidation"); return(NULL);} )
+	                        error = function(e) { warnings("Message from spls.cv: error when fitting a model in crossvalidation"); return(NULL);} )
 	     
 	     ## results
 	     res = numeric(6)
 	     
 	     if(!is.null(model)) {
-	          res = c(k, run, paramGrid$lambdaL1[gridRow], paramGrid$ncomp[gridRow], model$lenA, sum((model$hatYtest - sYtest)^2) / ntest)
+	          res = c(k, run, paramGrid$lambdaL1[gridRow], paramGrid$ncomp[gridRow], 
+	                  model$lenA, sum((model$hatYtest - get(paste0("sYtest_", k, "_", run)))^2) / ntest)
 	     } else {
 	          res = c(k, run, paramGrid$lambdaL1[gridRow], paramGrid$ncomp[gridRow], 0, NA)
 	     }

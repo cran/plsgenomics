@@ -354,7 +354,7 @@ logit.spls.cv <- function(X, Y, lambda.ridge.range, lambda.l1.range,
                     stop("Message from logit.spls.cv: the procedure stops because number of predictor variables with no null variance is less than 1.")
                }
                
-               warning("There are covariables with nul variance")
+               warning("Message from logit.spls.cv: There are covariables with null variance in the current sub-sampling, they will be ignored.")
                
                # remove predictor with null variance
                Xtrain <- Xtrain[,which(sigma2train >= .Machine$double.eps)]

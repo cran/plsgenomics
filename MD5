@@ -1,4 +1,4 @@
-812e5ae6b961624a59699c93f673faa9 *DESCRIPTION
+d22ddb00af69d2e9fa5ba246e9b42810 *DESCRIPTION
 81bcece21748c91ba9992349a91ec11d *LICENCE.note
 ded6241fbe0669a4e986221236a0ed57 *NAMESPACE
 2042e3e16c3d4a1d66112ddf50809d61 *R/TFA.estimate.R
@@ -10,7 +10,7 @@ d4799b322412e1aa267788033e92f5a1 *R/gsim.aux.R
 134e88124ea242499da2b232d96ad918 *R/internal.R
 b109b121732a24e4bc0d70ac03900860 *R/logit.spls.R
 7e29f5c9c2d7d155e49622597d4b71fa *R/logit.spls.aux.R
-7d95aaa17a68587fc0f1cb051697bf7c *R/logit.spls.cv.R
+a6d7eb476d1c3ff591290b8129d4a06e *R/logit.spls.cv.R
 04ba630a81aac19a9c4a735a9adc9c5c *R/logit.spls.stab.R
 ede30857ce855b1b45502dcc53c9cd96 *R/matrix.heatmap.R
 7e6d6e7a1a50833e12cfee0f57026801 *R/mgsim.R
@@ -21,7 +21,7 @@ ef01a53902c4ba56fc050e63fdb5daf9 *R/mrpls.cv.R
 d37cff54701b35c2e8b6edff9222107b *R/mrplsaux.R
 f6465d43771adef415bd4e8856d3c08b *R/multinom.spls.R
 6cbcda82e0c3677bb3251dd12033a266 *R/multinom.spls.aux.R
-bb6429e795d5075f3372ab24aaf8c40f *R/multinom.spls.cv.R
+47a0e22066b0dd1282ea0c9e4b5140e3 *R/multinom.spls.cv.R
 d19c83c46feb69fe7934965047da9e64 *R/multinom.spls.stab.R
 dee4ac4278d2b33908af026ea50044d1 *R/mwirrls.R
 35ecebf8c2119dbe86b70c62cfa87413 *R/pls.lda.R
@@ -37,7 +37,7 @@ e9ed9a21b6b1bdf6ef9c3a7db113ff1d *R/sample.cont.R
 c8ee6d807c97d5b6ca47aa740c9b30e4 *R/sample.multinom.R
 b0fc85043161b6148d6508e287f90b96 *R/spls.R
 d242824b6188fc0f987de248aa392fa0 *R/spls.aux.R
-8c728b1bae8cecc85664db427e45c88a *R/spls.cv.R
+efc45e664ab3bc0fe590ffc93ad4563e *R/spls.cv.R
 b6297a4d3c97857d4827ad5eeb6a682c *R/spls.in.R
 5ebe4c5e9f68d8eec826fd7ed949114f *R/spls.stab.R
 d38f1c3b8bb341e521c86c9b4c6bab04 *R/stability.selection.R
@@ -47,7 +47,7 @@ c93ff3f5e780061fe5afb027d0e27aeb *R/utils.R
 37390a8e9af2efe1e3785170ab6d6ccf *R/variable.selection.R
 4fdb1afcd1d59dc8dcb6df59a53a8acb *R/wirrls.R
 46a0b75211a606632033a3f3041d37a1 *R/wpls.R
-33f5504e9cdd9685af1c91c9017abb70 *R/zzz.R
+afa3ed2df0d24d65e70a568864521c99 *R/zzz.R
 0f45ae2fd13519dda91611e35f258b1d *README
 39c9cea02c7015699f80871475e4f1e3 *data/Colon.rda
 b877856ddfa18da08c71cc038f0db845 *data/Ecoli.rda
