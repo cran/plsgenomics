@@ -204,6 +204,10 @@ if (ntest != 0)
    }
 
 }
+else
+{
+     sXtest <- NULL
+}
 
 rm(Xtrain)
 rm(Xtest)
@@ -236,7 +240,7 @@ for (j in 1:ntrain)
    
     #constante modification
     cte <- cte+sXtrain[j,]%*%gamma
-    expcte <- exp(cte)
+    expcte <- as.numeric(exp(cte))
     
     gamma <- gamma*expcte/(1+expcte)-(gamma*expcte)*expcte/(1+expcte)^2
     BETA <- BETA + gamma/ntrain
@@ -260,7 +264,7 @@ if (is.null(hB)==TRUE)
 #########################################################################
 # only if Xtest != NULL
 
-if (is.null(Xtest)==FALSE)
+if (!is.null(sXtest))
 {   
    newsXtest <- sXtest%*%BETA 
    ajEst <- rep(1,length=ntest)
