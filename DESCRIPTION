@@ -1,5 +1,5 @@
 Package: plsgenomics
-Version: 1.5-2
+Version: 1.5-2.1
 Date: 2018-08-23
 Title: PLS Analyses for Genomics
 Author: Anne-Laure Boulesteix <boulesteix@ibe.med.uni-muenchen.de>,
@@ -11,8 +11,6 @@ Author: Anne-Laure Boulesteix <boulesteix@ibe.med.uni-muenchen.de>,
 Maintainer: Ghislain Durif <gd.dev@libertymail.net>
 Imports: MASS, boot, parallel, reshape2, plyr, fields, RhpcBLASctl
 Depends: R (>= 3.0)
-Suggests:
-Encoding: latin1
 Description: Routines for PLS-based genomic analyses,
         implementing PLS methods for classification with
         microarray data and prediction of transcription factor
@@ -24,8 +22,8 @@ Description: Routines for PLS-based genomic analyses,
         an adaptive version of the sparse PLS.
 License: GPL (>= 2)
 URL: https://CRAN.R-project.org/package=plsgenomics
-Packaged: 2018-08-24 07:53:38 UTC; gdurif
+Packaged: 2023-11-27 12:38:25 UTC; hornik
 Repository: CRAN
-Date/Publication: 2018-08-24 08:30:03 UTC
+Date/Publication: 2023-11-27 13:25:43 UTC
 RoxygenNote: 6.0.1
 NeedsCompilation: no
