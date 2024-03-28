@@ -6,9 +6,20 @@
 solved by a combination of the Ridge Iteratively Reweighted Least Squares 
 (RIRLS) algorithm and the Adaptive Sparse PLS (SPLS) regression}
 \usage{
-logit.spls(Xtrain, Ytrain, lambda.ridge, lambda.l1, ncomp, Xtest = NULL,
-  adapt = TRUE, maxIter = 100, svd.decompose = TRUE, center.X = TRUE,
-  scale.X = FALSE, weighted.center = TRUE)
+logit.spls(
+  Xtrain,
+  Ytrain,
+  lambda.ridge,
+  lambda.l1,
+  ncomp,
+  Xtest = NULL,
+  adapt = TRUE,
+  maxIter = 100,
+  svd.decompose = TRUE,
+  center.X = TRUE,
+  scale.X = FALSE,
+  weighted.center = TRUE
+)
 }
 \arguments{
 \item{Xtrain}{a (ntrain x p) data matrix of predictor values. 
@@ -99,14 +110,14 @@ new observations in \code{Xtest}, that are used to predict the
 \description{
 The function \code{logit.spls} performs compression and variable selection 
 in the context of binary classification (with possible prediction) 
-using Durif et al. (2017) algorithm based on Ridge IRLS and sparse PLS.
+using Durif et al. (2018) algorithm based on Ridge IRLS and sparse PLS.
 }
 \details{
 The columns of the data matrices \code{Xtrain} and \code{Xtest} may 
 not be standardized, since standardizing can be performed by the function 
 \code{logit.spls} as a preliminary step.
 
-The procedure described in Durif et al. (2017) is used to compute
+The procedure described in Durif et al. (2018) is used to compute
 latent sparse components that are used in a logistic regression model.
 In addition, when a matrix \code{Xtest} is supplied, the procedure 
 predicts the response associated to these new values of the predictors.
@@ -147,14 +158,15 @@ sum(model1$hatYtest!=Ytest) / length(index.test)
 
 }
 \references{
-Durif G., Modolo L., Michaelsson J., Mold J. E., Lambert-Lacroix S., 
-Picard F. (2017). High Dimensional Classification with combined Adaptive 
-Sparse PLS and Logistic Regression, (in prep), 
-available on (\url{http://arxiv.org/abs/1502.05933}).
+Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+Picard, F., 2018. High dimensional classification with combined 
+adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+485--493. \doi{10.1093/bioinformatics/btx571}.
+Available at \url{http://arxiv.org/abs/1502.05933}.
 }
 \seealso{
 \code{\link{spls}}, \code{\link{logit.spls.cv}}
 }
 \author{
-Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 }

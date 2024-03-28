@@ -81,7 +81,7 @@ for (j in 1:ntrain)
    
    #constante modification
    cte <- cte+Ztrain[j,-1]%*%gamma
-   expcte <- exp(cte)
+   expcte <- as.vector(exp(cte))
     
    gamma <- gamma*expcte/(1+expcte)-(gamma*expcte)*expcte/(1+expcte)^2
    BETA <- BETA + gamma/ntrain

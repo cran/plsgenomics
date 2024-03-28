@@ -60,7 +60,7 @@ gsim.cv(Xtrain, Ytrain,LambdaRange,hARange,hB=NULL, NbIterMax=50)
   Sophie Lambert-Lacroix 
   (\url{http://membres-timc.imag.fr/Sophie.Lambert/}) 
    and 
-  Julie Peyre (\url{http://www-lmc.imag.fr/lmc-sms/Julie.Peyre/}).
+  Julie Peyre (\url{https://membres-ljk.imag.fr/Julie.Peyre/}).
 }
 
 \seealso{\code{\link{mgsim}}, \code{\link{gsim}}, \code{\link{gsim.cv}}.}

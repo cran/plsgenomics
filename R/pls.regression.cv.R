@@ -63,14 +63,18 @@ return(ncomp)
 
 pls.regression.sample<-function(samp,X,Y,ncomp)
 {
+Y<-as.matrix(Y)
 lncomp<-length(ncomp)
 errorcv<-numeric(lncomp)
 pls.out<-pls.regression(X[samp,],Y[samp,],ncomp=ncomp,Xtest=X[-samp,])
 
 for (j in 1:lncomp)
   {
-  errorcv[j]<-sum((pls.out$Ypred[,,j]-Y[-samp,])^2)
+  sYtest <- scale(as.matrix(Y[-samp,]), 
+                  center=apply(as.matrix(Y[samp,]),2,mean),
+                  scale=FALSE)
+  errorcv[j]<-sum((pls.out$Ypred[,,j]-sYtest)^2)
   }
 
-errorcv
+return(errorcv)
 }

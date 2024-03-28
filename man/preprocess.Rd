@@ -48,7 +48,7 @@ Journal of the American Statistical Association, 97, 77--87.
   Sophie Lambert-Lacroix 
   (\url{http://membres-timc.imag.fr/Sophie.Lambert/}) 
    and 
-  Julie Peyre (\url{http://www-lmc.imag.fr/lmc-sms/Julie.Peyre/}).
+  Julie Peyre (\url{https://membres-ljk.imag.fr/Julie.Peyre/}).
 }
 
 \examples{

@@ -31,14 +31,14 @@
 #' The function \code{spls.cv} chooses the optimal values for the 
 #' hyper-parameter of the \code{spls} procedure, by minimizing the mean 
 #' squared error of prediction over the hyper-parameter grid, 
-#' using Durif et al. (2017) adaptive SPLS algorithm.
+#' using Durif et al. (2018) adaptive SPLS algorithm.
 #' 
 #' @details 
 #' The columns of the data matrices \code{Xtrain} and \code{Xtest} may not 
 #' be standardized, since standardizing can be performed by the function 
 #' \code{spls.cv} as a preliminary step.
 #' 
-#' The procedure is described in Durif et al. (2017). The K-fold 
+#' The procedure is described in Durif et al. (2018). The K-fold 
 #' cross-validation can be summarize as follow: the train set is partitioned 
 #' into K folds, for each value of hyper-parameters the model is fit K times, 
 #' using each fold to compute the prediction error rate, and fitting the 
@@ -72,7 +72,7 @@
 #' step sould be adaptive or not (see details).
 #' @param center.X a boolean value indicating whether the data matrices 
 #' \code{Xtrain} and \code{Xtest} (if provided) should be centered or not.
-#' @param scale.X}{aa boolean value indicating whether the data matrices 
+#' @param scale.X a boolean value indicating whether the data matrices 
 #' \code{Xtrain} and \code{Xtest} (if provided) should be scaled or not 
 #' (\code{scale.X=TRUE} implies \code{center.X=TRUE}).
 #' @param center.Y a boolean value indicating whether the response values 
@@ -103,13 +103,14 @@
 #' \code{cv.grid} is NULL if \code{return.grid} is set to FALSE.}
 #' 
 #' @references 
-#' Durif G., Modolo L., Michaelsson J., Mold J. E., Lambert-Lacroix S., 
-#' Picard F. (2017). High Dimensional Classification with combined Adaptive 
-#' Sparse PLS and Logistic Regression, (in prep), 
-#' available on (\url{http://arxiv.org/abs/1502.05933}).
+#' Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+#' Picard, F., 2018. High dimensional classification with combined 
+#' adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+#' 485--493. \doi{10.1093/bioinformatics/btx571}.
+#' Available at \url{http://arxiv.org/abs/1502.05933}.
 #' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 #' 
 #' @seealso \code{\link{spls}}
 #' 
@@ -275,7 +276,7 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	     
 	     ntest <- nrow(Xtest)
 	     
-	     V <- Vfull[folds.obs != k, folds.obs != k]
+	     V <- Vfull[folds.obs[,run] != k, folds.obs[,run] != k]
 	     
 	     if (is.vector(Xtest)==TRUE) {
 	          Xtest <- matrix(Xtest,nrow=1)
@@ -451,7 +452,7 @@ spls.cv <- function(X, Y, lambda.l1.range, ncomp.range, weight.mat=NULL,
 	     Xtest <- subset(X, folds.obs[,run] == k)
 	     Ytest <- subset(Y, folds.obs[,run] == k)
 	     
-	     V <- Vfull[folds.obs != k, folds.obs != k]
+	     V <- Vfull[folds.obs[,run] != k, folds.obs[,run] != k]
 	     
 	     if(!is.null(get(paste0("DeletedCol_", k, "_", run)))) {
 	          Xtrain <- Xtrain[,-get(paste0("DeletedCol_", k, "_", run))]

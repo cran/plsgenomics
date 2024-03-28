@@ -22,10 +22,10 @@ The function \code{stability.selection.heatmap} allows to visualize
 estimated probabilities to be selected for each covariate depending on the
 value of hyper-parameters in the spls, logit-spls or multinomial-spls models. 
 These estimated probabilities are used in the stability selection procedure 
-described in Durif et al. (2017).
+described in Durif et al. (2018).
 }
 \details{
-The procedure is described in Durif et al. (2017). The stability selection 
+The procedure is described in Durif et al. (2018). The stability selection 
 procedure can be summarize as follow (c.f. Meinshausen and Buhlmann, 2010).
 
 (i) For each candidate values of hyper-parameters, a model is trained 
@@ -40,7 +40,7 @@ function \code{\link{stability.selection.heatmap}}.
 set of covariates that were selected by most of the training among the 
 grid of hyper-parameters candidate values, based on a threshold probability
 \code{piThreshold} and a restriction of the grid of hyper-parameters based 
-on \code{rhoError} (c.f. Durif et al., 2017, for details).
+on \code{rhoError} (c.f. Durif et al., 2018, for details).
 
 This function allows to visualize probabalities estimated at the first 
 step (i) of the stability selection by the functions \code{\link{spls.stab}},
@@ -86,5 +86,5 @@ stability.selection.heatmap(stab1)
 \code{\link{stability.selection.heatmap}}
 }
 \author{
-Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 }

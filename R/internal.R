@@ -25,36 +25,6 @@
 #' 
 #' These are not to be called by the user.
 #' @keywords internal
-#' @rdname plsgenomics-internal
-#' @name plsgenomics-internal
-#' @docType package
-#' 
-#' @export standard.simpls
-#' @export unitr.simpls
-#' @export transformy
-#' @export pls.regression.sample
-#' @export pls.lda.sample
-#' @export gsim.aux
-#' @export mgsimaux
-#' @export rplsaux
-#' @export mrplsaux
-#' @export hplugin
-#' @export wirrls
-#' @export mwirrls
-#' 
-#' @export ust
-#' @export ust.adapt
-#' @export wpls
-#' @export spls.aux
-#' @export spls.in
-#' @export logit.spls.aux
-#' @export multinom.spls.aux
-#' 
-#' @export safeExp
-#' @export safeExpMat
-#' @export safeSum
-#' @export softMax
-#' 
 #' @aliases 
 #' standard.simpls
 #' unitr.simpls
@@ -79,6 +49,7 @@
 #' safeExpMat
 #' safeSum
 #' softMax
-#' 
+#' @rdname plsgenomics-internal
+#' @name plsgenomics-internal
 #' 
 NULL

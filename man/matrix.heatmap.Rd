@@ -39,5 +39,5 @@ matrix.heatmap(A)
 \code{\link{stability.selection.heatmap}}
 }
 \author{
-Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 }

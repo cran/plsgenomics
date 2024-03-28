@@ -56,6 +56,7 @@ standard.simpls <- function (Xtrain, Ytrain, Xtest=NULL, ncomp=NULL)
     TT <- matrix(0, ncol = max(ncomp), nrow = n)
     VV <- matrix(0, ncol = max(ncomp), nrow = p)
     UU <- matrix(0, ncol = max(ncomp), nrow = n)
+    CC <- matrix(0, ncol = max(ncomp), nrow = m)
     B <- array(0, c(dim(X)[2], dim(Y)[2], length(ncomp)))
     if (!is.null(Xtest))
         {

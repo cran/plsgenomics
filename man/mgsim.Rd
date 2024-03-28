@@ -62,7 +62,7 @@ Data Analysis, vol 51, n 3, 2091-2113.
   Sophie Lambert-Lacroix 
   (\url{http://membres-timc.imag.fr/Sophie.Lambert/}) 
    and 
-  Julie Peyre (\url{http://www-lmc.imag.fr/lmc-sms/Julie.Peyre/}).
+  Julie Peyre (\url{https://membres-ljk.imag.fr/Julie.Peyre/}).
 
 }
 \seealso{\code{\link{mgsim.cv}}, \code{\link{gsim}}, \code{\link{gsim.cv}}.}

@@ -35,7 +35,7 @@
 #' @return No return, just plot the heatmap in the current graphic window.
 #' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 #' 
 #' @seealso \code{\link{logit.spls}}, \code{\link{stability.selection}}, 
 #' \code{\link{stability.selection.heatmap}}

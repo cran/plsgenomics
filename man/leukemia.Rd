@@ -29,9 +29,11 @@ A list with the following elements:
 }
 
 \source{The dataset was taken from
-the R package multtest. The data are described in Golub et al. (1999) and can be freely
-downloaded from 
-\url{http://www.broadinstitute.org/cgi-bin/cancer/publications/pub_paper.cgi?paper_id=43}.}
+the R package multtest. The data are described in Golub et al. (1999). 
+The data was originally collected from 
+\code{http://www.broadinstitute.org/cgi-bin/cancer/publications/pub_paper.cgi?paper_id=43}
+but the URL is not working anymore and we could not find a replacement link 
+in 2024.}
 
 \references{
  S. Dudoit, J. Fridlyand and T. P. Speed (2002). Comparison of discrimination

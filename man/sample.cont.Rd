@@ -49,7 +49,7 @@ sample.cont(n, p, kstar, lstar, beta.min, beta.max, mean.H=0, sigma.H,
 	
 	The response is generated as Y = X \%*\% B + E, where E is some gaussian noise N(0,sigma.E^2).
 	
-	The details of the procedure are developped by Durif et al. (2015).
+	The details of the procedure are developped by Durif et al. (2018).
  
 }
 
@@ -86,13 +86,16 @@ sample.cont(n, p, kstar, lstar, beta.min, beta.max, mean.H=0, sigma.H,
 
 \references{
  
-	G. Durif, F. Picard, S. Lambert-Lacroix (2015). Adaptive sparse PLS for logistic regression, 
-	(in prep), available on (\url{http://arxiv.org/}).
+	Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+     Picard, F., 2018. High dimensional classification with combined 
+     adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+     485–493. \doi{10.1093/bioinformatics/btx571}.
+     Available at \url{http://arxiv.org/abs/1502.05933}.
 
 }
 
 \author{
-	Ghislain Durif (\url{http://lbbe.univ-lyon1.fr/-Durif-Ghislain-.html}). 
+	Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}). 
 
 }
 \seealso{\code{\link{sample.bin}}.}

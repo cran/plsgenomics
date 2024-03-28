@@ -32,14 +32,14 @@
 #' @description 
 #' The function \code{spls.adapt} performs compression and variable selection 
 #' in the context of linear regression (with possible prediction) 
-#' using Durif et al. (2017) adaptive SPLS algorithm.
+#' using Durif et al. (2018) adaptive SPLS algorithm.
 #' 
 #' @details 
 #' The columns of the data matrices \code{Xtrain} and \code{Xtest} may 
 #' not be standardized, since standardizing can be performed by the function 
 #' \code{spls} as a preliminary step.
 #' 
-#' The procedure described in Durif et al. (2017) is used to compute 
+#' The procedure described in Durif et al. (2018) is used to compute 
 #' latent sparse components that are used in a regression model.
 #' In addition, when a matrix \code{Xtest} is supplied, the procedure 
 #' predicts the response associated to these new values of the predictors.
@@ -142,10 +142,11 @@
 #' step was adaptive or not.}
 #' 
 #' @references 
-#' Durif G., Modolo L., Michaelsson J., Mold J. E., Lambert-Lacroix S., 
-#' Picard F. (2017). High Dimensional Classification with combined Adaptive 
-#' Sparse PLS and Logistic Regression, (in prep), 
-#' available on (\url{http://arxiv.org/abs/1502.05933}).
+#' Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+#' Picard, F., 2018. High dimensional classification with combined 
+#' adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+#' 485--493. \doi{10.1093/bioinformatics/btx571}.
+#' Available at \url{http://arxiv.org/abs/1502.05933}.
 #' 
 #' Chun, H., & Keles, S. (2010). Sparse partial least squares regression for 
 #' simultaneous dimension reduction and variable selection.  Journal of the 
@@ -153,7 +154,7 @@
 #' doi:10.1111/j.1467-9868.2009.00723.x
 #' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}). 
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}). 
 #' 
 #' Adapted in part from spls code by H. Chun, D. Chung and S.Keles 
 #' (\url{https://CRAN.R-project.org/package=spls}).

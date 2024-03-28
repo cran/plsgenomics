@@ -25,12 +25,11 @@
 #' Deprecated function(s) in the 'plsgenomics' package
 #' 
 #' These functions are provided for compatibility with older version of
-#' the 'plsgenomics' package.  They may eventually be completely
+#' the 'plsgenomics' package. They may eventually be completely
 #' removed.
 #' @rdname plsgenomics-deprecated
 #' @name plsgenomics-deprecated
 #' @param ... Parameters to be passed to the modern version of the function
-#' @docType package
 #' @export rirls.spls
 #' @export rirls.spls.tune
 #' @export rirls.spls.stab
@@ -99,4 +98,3 @@ spls.adapt.tune <- function(...) {
      .Deprecated("spls.cv", package="plsgenomics")
      spls.cv(...)
 }
-NULL

@@ -28,13 +28,13 @@
 #' @description 
 #' The function \code{stability.selection} returns the list of selected 
 #' covariates, when following the stability selection procedure described in 
-#' Durif et al. (2017). In particular, it selects covariates that are selected 
+#' Durif et al. (2018). In particular, it selects covariates that are selected 
 #' by most of the sparse PLS, the logit-SPLS or the multinomial-SPLS models 
 #' when exploring the grid of hyper-parameter candidate values.
 #' 
 #' 
 #' @details
-#' The procedure is described in Durif et al. (2017). The stability selection 
+#' The procedure is described in Durif et al. (2018). The stability selection 
 #' procedure can be summarize as follow (c.f. Meinshausen and Buhlmann, 2010).
 #' 
 #' (i) For each candidate values of hyper-parameters, a model is trained 
@@ -49,7 +49,7 @@
 #' set of covariates that were selected by most of the training among the 
 #' grid of hyper-parameters candidate values, based on a threshold probability
 #' \code{piThreshold} and a restriction of the grid of hyper-parameters based 
-#' on \code{rhoError} (c.f. Durif et al., 2017, for details).
+#' on \code{rhoError} (c.f. Durif et al., 2018, for details).
 #' 
 #' This function achieves the second step (ii) of the stability selection 
 #' procedure. The first step (i) is achieved by the functions 
@@ -59,9 +59,9 @@
 #' @param stab.out the output of the functions \code{\link{spls.stab}}, 
 #' \code{\link{logit.spls.stab}} or \code{\link{multinom.spls.stab}}.
 #' @param piThreshold a value in (0,1], corresponding to the threshold 
-#' probability used to select covariate (c.f. Durif et al., 2017).
+#' probability used to select covariate (c.f. Durif et al., 2018).
 #' @param rhoError a positive value used to restrict the grid of 
-#' hyper-parameter candidate values (c.f. Durif et al., 2017).
+#' hyper-parameter candidate values (c.f. Durif et al., 2018).
 #' 
 #' @return An object with the following attributes:
 #' \item{selected.predictors}{The list of the name of covariates that 
@@ -70,8 +70,19 @@
 #' each covariate, i.e. the maximal values on the reduced grid of 
 #' hyper-parameters.}
 #' 
+#' @references 
+#' Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+#' Picard, F., 2018. High dimensional classification with combined 
+#' adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+#' 485--493. \doi{10.1093/bioinformatics/btx571}.
+#' Available at \url{http://arxiv.org/abs/1502.05933}.
+#' 
+#' Meinshausen, N., Buhlmann P. (2010). Stability Selection. Journal of the 
+#' Royal Statistical Society: Series B (Statistical Methodology) 
+#' 72, no. 4, 417-473.
+#' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 #' 
 #' @seealso \code{\link{spls.stab}}, \code{\link{logit.spls.stab}}, 
 #' \code{\link{multinom.spls.stab}}, \code{\link{stability.selection.heatmap}}
@@ -142,11 +153,11 @@ stability.selection <- function(stab.out, piThreshold=0.9, rhoError=10) {
 #' estimated probabilities to be selected for each covariate depending on the
 #' value of hyper-parameters in the spls, logit-spls or multinomial-spls models. 
 #' These estimated probabilities are used in the stability selection procedure 
-#' described in Durif et al. (2017).
+#' described in Durif et al. (2018).
 #' 
 #' 
 #' @details
-#' The procedure is described in Durif et al. (2017). The stability selection 
+#' The procedure is described in Durif et al. (2018). The stability selection 
 #' procedure can be summarize as follow (c.f. Meinshausen and Buhlmann, 2010).
 #' 
 #' (i) For each candidate values of hyper-parameters, a model is trained 
@@ -161,7 +172,7 @@ stability.selection <- function(stab.out, piThreshold=0.9, rhoError=10) {
 #' set of covariates that were selected by most of the training among the 
 #' grid of hyper-parameters candidate values, based on a threshold probability
 #' \code{piThreshold} and a restriction of the grid of hyper-parameters based 
-#' on \code{rhoError} (c.f. Durif et al., 2017, for details).
+#' on \code{rhoError} (c.f. Durif et al., 2018, for details).
 #' 
 #' This function allows to visualize probabalities estimated at the first 
 #' step (i) of the stability selection by the functions \code{\link{spls.stab}},
@@ -177,7 +188,7 @@ stability.selection <- function(stab.out, piThreshold=0.9, rhoError=10) {
 #' @return No return, just plot the heatmap in the current graphic window.
 #' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 #' 
 #' @seealso \code{\link{logit.spls}}, \code{\link{stability.selection}}, 
 #' \code{\link{stability.selection.heatmap}}

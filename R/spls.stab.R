@@ -32,7 +32,7 @@
 #' on multiple sub-samplings in the data. The stability selection procedure 
 #' selects the covariates that are selected by most of the models among the 
 #' grid of hyper-parameters, following the procedure described in 
-#' Durif et al. (2017). Candidates values for \code{ncomp} and \code{lambda.l1} 
+#' Durif et al. (2018). Candidates values for \code{ncomp} and \code{lambda.l1} 
 #' are respectively given by the input arguments \code{ncomp.range} and 
 #' \code{lambda.l1.range}.
 #' 
@@ -42,7 +42,7 @@
 #' since standardizing is performed by the function \code{spls.stab} 
 #' as a preliminary step. 
 #' 
-#' The procedure is described in Durif et al. (2017). The stability selection 
+#' The procedure is described in Durif et al. (2018). The stability selection 
 #' procedure can be summarize as follow (c.f. Meinshausen and Buhlmann, 2010).
 #' 
 #' (i) For each candidate values \code{(ncomp, lambda.l1)} of 
@@ -85,7 +85,7 @@
 #' step sould be adaptive or not (see details).
 #' @param center.X a boolean value indicating whether the data matrices 
 #' \code{Xtrain} and \code{Xtest} (if provided) should be centered or not.
-#' @param scale.X}{aa boolean value indicating whether the data matrices 
+#' @param scale.X a boolean value indicating whether the data matrices 
 #' \code{Xtrain} and \code{Xtest} (if provided) should be scaled or not 
 #' (\code{scale.X=TRUE} implies \code{center.X=TRUE}).
 #' @param center.Y a boolean value indicating whether the response values 
@@ -106,7 +106,7 @@
 #' 
 #' @return An object with the following attributes
 #' \item{q.Lambda}{A table with values of q.Lambda (c.f. Durif 
-#' et al. (2017) for the notation), being the averaged number of covariates
+#' et al. (2018) for the notation), being the averaged number of covariates
 #' selected among the entire grid of hyper-parameters candidates values,
 #' for increasing size of hyper-parameter grid.}
 #' \item{probs.lambda}{A table with estimated probability of selection for each 
@@ -115,17 +115,18 @@
 #' model.}
 #' 
 #' @references 
-#' Durif G., Modolo L., Michaelsson J., Mold J. E., Lambert-Lacroix S., 
-#' Picard F. (2017). High Dimensional Classification with combined Adaptive 
-#' Sparse PLS and Logistic Regression, (in prep), 
-#' available on (\url{http://arxiv.org/abs/1502.05933}).
+#' Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+#' Picard, F., 2018. High dimensional classification with combined 
+#' adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+#' 485--493. \doi{10.1093/bioinformatics/btx571}.
+#' Available at \url{http://arxiv.org/abs/1502.05933}.
 #' 
 #' Meinshausen, N., Buhlmann P. (2010). Stability Selection. Journal of the 
 #' Royal Statistical Society: Series B (Statistical Methodology) 
 #' 72, no. 4, 417-473.
 #' 
 #' @author
-#' Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+#' Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 #' 
 #' @seealso \code{\link{spls}}, \code{\link{stability.selection}}, 
 #' \code{\link{stability.selection.heatmap}}

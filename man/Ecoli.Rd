@@ -39,8 +39,12 @@ data(Ecoli)
  72--74. 
 }
 
-\source{The data are described in Kao et al. (2004) and can be freely downloaded from 
-\url{http://www.seas.ucla.edu/~liaoj/downloads.html}.}
+\source{The data are described in Kao et al. (2004). The data was originally 
+collected from 
+\code{http://www.seas.ucla.edu/~liaoj/downloads.html} that became
+\url{https://www.seas.ucla.edu/liao_lab//downloads.html} but the dataset
+does not appear to be available anymore  and we could not find a 
+replacement link in 2024.}
 
 \examples{
 # load plsgenomics library

@@ -75,9 +75,9 @@ from Combined Analysis of Microarray and ChIP Data: A Partial Least Squares Appr
 
 \author{
 Anne-Laure Boulesteix 
-(\url{http://www.ibe.med.uni-muenchen.de/organisation/mitarbeiter/020_professuren/boulesteix/eng.html}) 
+(\url{https://www.ibe.med.uni-muenchen.de/mitarbeiter/professoren/boulesteix/index.html}) 
 and 
-Korbinian Strimmer (\url{http://strimmerlab.org}).
+Korbinian Strimmer (\url{https://strimmerlab.github.io/korbinian.html}).
 
 
 }

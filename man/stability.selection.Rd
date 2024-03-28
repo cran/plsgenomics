@@ -12,10 +12,10 @@ stability.selection(stab.out, piThreshold = 0.9, rhoError = 10)
 \code{\link{logit.spls.stab}} or \code{\link{multinom.spls.stab}}.}
 
 \item{piThreshold}{a value in (0,1], corresponding to the threshold 
-probability used to select covariate (c.f. Durif et al., 2017).}
+probability used to select covariate (c.f. Durif et al., 2018).}
 
 \item{rhoError}{a positive value used to restrict the grid of 
-hyper-parameter candidate values (c.f. Durif et al., 2017).}
+hyper-parameter candidate values (c.f. Durif et al., 2018).}
 }
 \value{
 An object with the following attributes:
@@ -28,12 +28,12 @@ hyper-parameters.}
 \description{
 The function \code{stability.selection} returns the list of selected 
 covariates, when following the stability selection procedure described in 
-Durif et al. (2017). In particular, it selects covariates that are selected 
+Durif et al. (2018). In particular, it selects covariates that are selected 
 by most of the sparse PLS, the logit-SPLS or the multinomial-SPLS models 
 when exploring the grid of hyper-parameter candidate values.
 }
 \details{
-The procedure is described in Durif et al. (2017). The stability selection 
+The procedure is described in Durif et al. (2018). The stability selection 
 procedure can be summarize as follow (c.f. Meinshausen and Buhlmann, 2010).
 
 (i) For each candidate values of hyper-parameters, a model is trained 
@@ -48,7 +48,7 @@ function \code{\link{stability.selection.heatmap}}.
 set of covariates that were selected by most of the training among the 
 grid of hyper-parameters candidate values, based on a threshold probability
 \code{piThreshold} and a restriction of the grid of hyper-parameters based 
-on \code{rhoError} (c.f. Durif et al., 2017, for details).
+on \code{rhoError} (c.f. Durif et al., 2018, for details).
 
 This function achieves the second step (ii) of the stability selection 
 procedure. The first step (i) is achieved by the functions 
@@ -88,10 +88,21 @@ stability.selection(stab1, piThreshold=0.6, rhoError=10)
 }
 
 }
+\references{
+Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+Picard, F., 2018. High dimensional classification with combined 
+adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+485--493. \doi{10.1093/bioinformatics/btx571}.
+Available at \url{http://arxiv.org/abs/1502.05933}.
+
+Meinshausen, N., Buhlmann P. (2010). Stability Selection. Journal of the 
+Royal Statistical Society: Series B (Statistical Methodology) 
+72, no. 4, 417-473.
+}
 \seealso{
 \code{\link{spls.stab}}, \code{\link{logit.spls.stab}}, 
 \code{\link{multinom.spls.stab}}, \code{\link{stability.selection.heatmap}}
 }
 \author{
-Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 }

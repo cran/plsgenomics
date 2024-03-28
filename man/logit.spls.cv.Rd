@@ -5,11 +5,25 @@
 \title{Cross-validation procedure to calibrate the parameters (ncomp, lambda.l1, 
 lambda.ridge) for the LOGIT-SPLS method}
 \usage{
-logit.spls.cv(X, Y, lambda.ridge.range, lambda.l1.range, ncomp.range,
-  adapt = TRUE, maxIter = 100, svd.decompose = TRUE,
-  return.grid = FALSE, ncores = 1, nfolds = 10, nrun = 1,
-  center.X = TRUE, scale.X = FALSE, weighted.center = TRUE, seed = NULL,
-  verbose = TRUE)
+logit.spls.cv(
+  X,
+  Y,
+  lambda.ridge.range,
+  lambda.l1.range,
+  ncomp.range,
+  adapt = TRUE,
+  maxIter = 100,
+  svd.decompose = TRUE,
+  return.grid = FALSE,
+  ncores = 1,
+  nfolds = 10,
+  nrun = 1,
+  center.X = TRUE,
+  scale.X = FALSE,
+  weighted.center = TRUE,
+  seed = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{X}{a (n x p) data matrix of predictors. \code{X} must be a matrix. 
@@ -88,14 +102,14 @@ error rate averaged over the folds. \code{cv.grid} is NULL if
 The function \code{logit.spls.cv} chooses the optimal values for the 
 hyper-parameter of the \code{logit.spls} procedure, by minimizing the 
 averaged error of prediction over the hyper-parameter grid, 
-using Durif et al. (2017) LOGIT-SPLS algorithm.
+using Durif et al. (2018) LOGIT-SPLS algorithm.
 }
 \details{
 The columns of the data matrices \code{X} may not be standardized, 
 since standardizing is performed by the function \code{logit.spls.cv} 
 as a preliminary step. 
 
-The procedure is described in Durif et al. (2017). The K-fold 
+The procedure is described in Durif et al. (2018). The K-fold 
 cross-validation can be summarize as follow: the train set is partitioned 
 into K folds, for each value of hyper-parameters the model is fit K times, 
 using each fold to compute the prediction error rate, and fitting the 
@@ -141,14 +155,15 @@ str(cv1)
 
 }
 \references{
-Durif G., Modolo L., Michaelsson J., Mold J. E., Lambert-Lacroix S., 
-Picard F. (2017). High Dimensional Classification with combined Adaptive 
-Sparse PLS and Logistic Regression, (in prep), 
-available on (\url{http://arxiv.org/abs/1502.05933}).
+Durif, G., Modolo, L., Michaelsson, J., Mold, J.E., Lambert-Lacroix, S., 
+Picard, F., 2018. High dimensional classification with combined 
+adaptive sparse PLS and logistic regression. Bioinformatics 34, 
+485--493. \doi{10.1093/bioinformatics/btx571}.
+Available at \url{http://arxiv.org/abs/1502.05933}.
 }
 \seealso{
 \code{\link{logit.spls}}, \code{\link{logit.spls.stab}}
 }
 \author{
-Ghislain Durif (\url{http://thoth.inrialpes.fr/people/gdurif/}).
+Ghislain Durif (\url{https://gdurif.perso.math.cnrs.fr/}).
 }

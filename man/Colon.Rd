@@ -27,9 +27,9 @@ A list with the following elements:
 
 }
 
-\source{The data are described in Alon et al. (1999) and can be freely
-downloaded from 
-\url{http://microarray.princeton.edu/oncology/affydata/index.html}.}
+\source{The data are described in Alon et al. (1999). The data was originally 
+collected from \code{http://microarray.princeton.edu/oncology/affydata/index.html} 
+that is now (in 2024) \url{http://genomics-pubs.princeton.edu/oncology/affydata/index.html}.}
 
 \references{
 Alon, U. and Barkai, N. and Notterman, D.A. and Gish, K. and Ybarra, S. and Mack, D. and Levine, 

@@ -37,9 +37,10 @@ A list with the following elements:
 
 }
 
-\source{The data are described in Khan et al. (2001) and can be freely
-downloaded from 
-\url{http://research.nhgri.nih.gov/microarray/Supplement/}.}
+\source{The data are described in Khan et al. (2001). The data was originally 
+collected from \code{http://research.nhgri.nih.gov/microarray/Supplement/} 
+but the URL is not working anymore and we could not find a 
+replacement link in 2024.}
 
 \references{
  Khan, J. and Wei, J. S. and Ringner, M. and Saal, L. H. and Ladanyi,
